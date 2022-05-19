@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.dao.BoardDao">
+
+
+	<!-- search condition -->
+	<sql id='searchcon'>
+		<if test="word != null and word !='' "></if><!-- 공백이 아니고 널이 아니면 -->
+		<choose>
+			<when test="key == 'id'">
+				author = #{word}
+			</when>
+			<when test=" key == 'title' ">
+				title like concat('%',#{word},'%')
+			</when>
+			<when test=" key == 'contents' ">
+				contents like concat('%',#{word},'%')
+			</when>
+
+		</choose>
+	</sql>
+
+<!-- 게시글 작성  -->
+	<insert id='insertBoard' parameterType="Board">
+		insert into
+		board(rg_date,title,contents,author)
+		values(now(),#{title},#{contents},#{author})
+	</insert>
+
+
+<!-- 번호로 게시글 검색 -->
+	<select id="search" parameterType="string" resultType="board">
+		select * from board where no=#{no}
+	</select>
+
+
+<!-- 모든 게시글 검색  -->
+	<select id="searchAll" parameterType="PageBean" resultType="board">
+		select *
+		<!-- no, id, title ,date_format(regdate, '%Y-%m-%d') as regdate -->
+		from board
+		<where>
+			<include refid="searchcon"></include>
+		</where>
+	<!-- 	<include refid="searchcon" /> -->
+		order by no asc
+		limit #{start}, #{interval}
+	</select>
+
+<!-- 모든 게시글 검색  -->
+	<select id="searchAll2" resultType="board">
+		select *
+		from board
+	</select>
+
+
+<!-- 총 게시글 수 검색  -->
+	<select id="count" parameterType="PageBean" resultType="int">
+		select count(*) as cnt from board
+		<where>
+			<include refid="searchcon"></include>
+		</where>
+	</select>
+
+
+<!-- 게시글 수정  -->
+
+	<update id="updateBoard" parameterType="Board">
+		update board set
+		title=#{title},contents=#{contents},regdate=now()
+		where no=#{no}
+	</update>
+
+<!-- 게시글 삭제  -->
+	<delete id='deleteBoard' parameterType="String">
+		delete from board where no=#{no}
+
+	</delete>
+
+
+</mapper>

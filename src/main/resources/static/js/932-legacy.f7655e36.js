@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_board_bootstrap"]=self["webpackChunkvue_board_bootstrap"]||[]).push([[932],{90932:function(e,t,r){r.r(t),r.d(t,{default:function(){return l}});var a=function(){var e=this,t=e.$createElement,r=e._self._c||t;return r("b-container",{staticClass:"bv-example-row mt-3 text-center"},[r("router-view")],1)},n=[],u={name:"BoardView"},o=u,s=r(1001),c=(0,s.Z)(o,a,n,!1,null,"5161a333",null),l=c.exports}}]);
+//# sourceMappingURL=932-legacy.f7655e36.js.map
