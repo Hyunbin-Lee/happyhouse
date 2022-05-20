@@ -49,4 +49,19 @@
 		order by aptName
 	</select>
 	
+	<select id="getAptDatail" parameterType="Map" resultType="houseInfoDto">
+		select * from housedeal as d
+		inner join houseinfo as i
+		on d.aptCode = i.aptCode 
+		left join sidocode si
+		on left(i.dongcode,2) = left(si.sidocode,2)
+		left join guguncode gu
+		on left(i.dongcode,5) = left(gu.guguncode,5)
+		where i.aptCode = (
+		select aptCode from houseinfo
+		where aptName like #{aptName} 
+		and buildYear like #{buildYear}) and
+		d.dealAmount like concat('%',#{recentPrice},'%');
+	</select>
+	
 </mapper>

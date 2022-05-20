@@ -2,6 +2,7 @@ package com.ssafy.happyhouse.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,5 +16,6 @@ public interface HouseMapDao {
 	List<HouseInfoDto> getDongInGugun(String gugun) throws SQLException;
 	List<HouseInfoDto> getAptInDong(String dong) throws SQLException;
 	List<HouseInfoDto> getAptInName(String aptName) throws SQLException;
+	HouseInfoDto getAptDatail(Map<String,Object> map);
 	
 }

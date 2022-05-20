@@ -54,6 +54,14 @@ public class HouseMapController {
 			return new ResponseEntity<List<HouseInfoDto>>(new ArrayList<>(), HttpStatus.OK);
 		return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.getAptInName(aptName), HttpStatus.OK);
 	}
+	@GetMapping("/apt/detail")
+	public ResponseEntity<HouseInfoDto> aptSearchDetail(
+			@RequestParam("aptName") String aptName,
+			@RequestParam("buildYear") String buildYear,
+			@RequestParam("recentPrice") String recentPrice
+			) throws Exception {
+		return new ResponseEntity<HouseInfoDto>(haHouseMapService.getAptDetail(aptName,buildYear,recentPrice), HttpStatus.OK);
+	}
 	@GetMapping("/apt/sort")
 	public ResponseEntity<List<HouseInfoDto>> aptSort(@RequestParam("criteria") String criteria ,@RequestParam("dong") String dong) throws Exception {
 		return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.sortApt(criteria, dong), HttpStatus.OK);

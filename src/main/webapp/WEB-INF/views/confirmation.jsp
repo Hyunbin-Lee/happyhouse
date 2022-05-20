@@ -86,7 +86,7 @@
 						  <label class="form-check-label">이름</label>
 						</div> -->
 					    
-						<table class="table table-hover" width="100%" cellspacing="0" cellpadding="0">
+						<table class="table table-hover" id="aptTable" width="100%" cellspacing="0" cellpadding="0">
 						<thead class="table-info">
 							
 								<th>번호</th>
@@ -127,10 +127,89 @@
 			</div>
  			-->
 
-
+	<div class="modal" id="aptDetailModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="modal-title">아파트 거래 상세 정보</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	        <img src="${root}/img/apt.png" class="rounded" alt="Cinque Terre">
+	        <div>
+		        <div>
+		        	<label id="apt-detail-aptName">이름 : </label>
+		        </div>
+		        <div>
+		        	<label id="apt-detail-address">주소 : </label>
+		        </div>
+		        <div>
+		        	<label id="apt-detail-buildYear">건축 년도 : </label>
+		        </div>
+		        <div>
+		        	<label id="apt-detail-recentPrice">거래 가격 : </label>
+		        </div>
+		        <div>
+		        	<label id="apt-detail-dealDate">거래 날짜 : </label>
+		        </div>
+		        <div>
+		        	<label id="apt-detail-area">면적 : </label>
+		        </div>
+		        <div>
+		        	<label id="apt-detail-floor">층 : </label>
+		        </div>
+	        </div>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
 
 	<script type="text/javascript" src="js/map.js"></script>
 	<script>
+	
+	//table row click event 처리
+	$(document.body).delegate('#aptTable tbody tr', 'click', function(event) {
+		var rowId = event.target.parentNode.parentNode.id;
+        var data = document.getElementById(rowId).querySelectorAll(".row-data"); 
+        var recentPrice = data[1].innerHTML;
+        var aptName = data[2].innerHTML;
+        var buildYear = data[3].innerHTML;
+		openAptDetailModal(recentPrice,aptName,buildYear);
+	});
+	
+	function openAptDetailModal(recentPrice,aptName,buildYear){
+		$.get(root + "/map/apt/detail",
+				{"aptName" : aptName,
+				"buildYear" : buildYear,
+				"recentPrice" : recentPrice
+				 },
+				function(data, status){
+					console.log(data);
+					$("#apt-detail-aptName")[0].innerHTML = $("#apt-detail-aptName")[0].innerHTML + data.aptName; 
+					$("#apt-detail-address")[0].innerHTML = $("#apt-detail-address")[0].innerHTML + data.sidoName + " " 
+					+ data.gugunName + " " + data.dongName + " " + data.jibun; 
+					$("#apt-detail-buildYear")[0].innerHTML = $("#apt-detail-buildYear")[0].innerHTML + data.buildYear;
+					$("#apt-detail-recentPrice")[0].innerHTML = $("#apt-detail-recentPrice")[0].innerHTML + data.dealAmount;
+					$("#apt-detail-dealDate")[0].innerHTML = $("#apt-detail-dealDate")[0].innerHTML + data.dealYear + "."
+					+ data.dealMonth + "." + data.dealDay;
+					$("#apt-detail-area")[0].innerHTML = $("#apt-detail-area")[0].innerHTML + data.area + "m2";
+					$("#apt-detail-floor")[0].innerHTML = $("#apt-detail-floor")[0].innerHTML + data.floor;
+				}
+				, "json"
+		);
+	}
+	
+	
 	function sortAptResult(box){
 		$.get(root + "/map/apt/sort",
 				{criteria: $(box).val(),
@@ -144,11 +223,11 @@
 					$.each(data, function(index, vo) {
 						let str = 
 							"<tr>" +
-							"<td>"+(index+1)+"</td>"+
-							"<td>"+vo.recentPrice+"</td>"+
-							"<td>"+vo.aptName+"</td>"+
-							"<td>"+vo.buildYear+"</td>"+
-							"<td>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+(index+1)+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.recentPrice+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
 							"</tr>";
 						$("tbody").append(str);
 					});
@@ -176,11 +255,11 @@
 					$.each(data, function(index, vo) {
 						let str = 
 							"<tr>" +
-							"<td>"+(index+1)+"</td>"+
-							"<td>"+vo.recentPrice+"</td>"+
-							"<td>"+vo.aptName+"</td>"+
-							"<td>"+vo.buildYear+"</td>"+
-							"<td>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+(index+1)+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.recentPrice+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
 							"</tr>";
 						$("tbody").append(str);
 					});
@@ -189,6 +268,7 @@
 				, "json"
 		);
 	}
+	
 	//YSNO 시도구군동 정보 가져오는 코드 추가 시작
 	
 	//let colorArr = ['table-primary','table-success','table-danger'];
@@ -237,11 +317,11 @@
 					$.each(data, function(index, vo) {
 						let str = 
 							"<tr>" +
-							"<td>"+(index+1)+"</td>"+
-							"<td>"+vo.recentPrice+"</td>"+
-							"<td>"+vo.aptName+"</td>"+
-							"<td>"+vo.buildYear+"</td>"+
-							"<td>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+(index+1)+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.recentPrice+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
 							"</tr>";
 						/*
 						let str = `

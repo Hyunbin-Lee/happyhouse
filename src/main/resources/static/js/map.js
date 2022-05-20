@@ -115,20 +115,20 @@ function getListItem(index, place) {
 //인포윈도우에 장소명을 표시합니다
 function displayInfowindow(marker, title, place) {
 	var content = `
-		<div class="overlaybox">
-			<div class="boxtitle">${title}</div>
+		<div class="overlaybox" style="background-color:#e8f0fe; border:1px solid white;">
+			<div class="boxtitle"><h5>${title}</h5></div>
 			<div class="first"><img src="${root}/img/apt.png" style="width:247px; height:136px;" alt=""></div>
 			<ul>
 				<li class="up">
-					<span class="title">건축년도</span>
+					<span class="title">건축년도: </span>
 					<span class="count">${place.buildYear}</span>
 				</li>
 				<li>
-					<span class="title">주소</span>
+					<span class="title">주소: </span>
 					<span class="count">${place.sidoName} ${place.gugunName} ${place.dongName} ${place.jibun}</span>
 				</li>
 				<li>
-					<span class="title">최신거래금액</span>
+					<span class="title">최신거래금액: </span>
 					<span class="count">${place.recentPrice}</span>
 				</li>
 				<li>

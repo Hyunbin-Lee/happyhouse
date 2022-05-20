@@ -1,8 +1,9 @@
 package com.ssafy.happyhouse.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,6 +75,15 @@ public class HouseMapServiceImpl implements HouseMapService {
 		}
 	
 		return Arrays.asList(arr);
+	}
+
+	@Override
+	public HouseInfoDto getAptDetail(String aptName, String buildYear, String recentPrice) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("aptName", aptName);
+		map.put("buildYear", buildYear);
+		map.put("recentPrice", recentPrice);
+		return houseMapDao.getAptDatail(map);
 	}
 
 }
