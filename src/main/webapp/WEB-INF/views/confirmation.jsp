@@ -60,9 +60,16 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="order_details_iner"
-						style="width: 100%; height: 500px; overflow: auto">
+				<div class="col-lg-12">
+					<div id="map" style="width: 100%; height: 550px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="order_details_iner" 
+						style="width: 100%; height: 500px; overflow: auto; background-color:#ffffff;">
 						<h3>거래 정보</h3>
 						<div class="form-check">
 						  <input type="radio" class="form-check-input" id="radio1" name="optradio" value="price" onchange="sortAptResult(this)">거래액 ▼
@@ -79,8 +86,8 @@
 						  <label class="form-check-label">이름</label>
 						</div> -->
 					    
-						<table width="100%" cellspacing="0" cellpadding="0">
-						<thead>
+						<table class="table table-hover" width="100%" cellspacing="0" cellpadding="0">
+						<thead class="table-info">
 							
 								<th>번호</th>
 								<th>거래액</th>
@@ -94,10 +101,9 @@
 					</div>
 				</div>
 
-				<div class="col-lg-6">
-					<div id="map" style="width: 100%; height: 550px;"></div>
-				</div>
 			</div>
+		</div>
+		
 			<!-- 
 			<div class="container">
 				<div class="row">
@@ -137,7 +143,7 @@
 					); */
 					$.each(data, function(index, vo) {
 						let str = 
-							"<tr class=" + colorArr[index%3]+">" +
+							"<tr>" +
 							"<td>"+(index+1)+"</td>"+
 							"<td>"+vo.recentPrice+"</td>"+
 							"<td>"+vo.aptName+"</td>"+
@@ -169,7 +175,7 @@
 					); */
 					$.each(data, function(index, vo) {
 						let str = 
-							"<tr class=" + colorArr[index%3]+">" +
+							"<tr>" +
 							"<td>"+(index+1)+"</td>"+
 							"<td>"+vo.recentPrice+"</td>"+
 							"<td>"+vo.aptName+"</td>"+
@@ -185,7 +191,7 @@
 	}
 	//YSNO 시도구군동 정보 가져오는 코드 추가 시작
 	
-	let colorArr = ['table-primary','table-success','table-danger'];
+	//let colorArr = ['table-primary','table-success','table-danger'];
 	$(document).ready(function(){
 		$.get(root + "/map/sido"
 			,function(data, status){
@@ -230,7 +236,7 @@
 					$("tbody").empty();
 					$.each(data, function(index, vo) {
 						let str = 
-							"<tr class=" + colorArr[index%3]+">" +
+							"<tr>" +
 							"<td>"+(index+1)+"</td>"+
 							"<td>"+vo.recentPrice+"</td>"+
 							"<td>"+vo.aptName+"</td>"+
