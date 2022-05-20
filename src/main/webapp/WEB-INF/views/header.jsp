@@ -67,9 +67,6 @@
                                     <a class="nav-link" href="${root}/contact">관심지역</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="${root}/sitemap">사이트맵</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="${root}/vueqna">Q&A</a>
                                 </li>
                                 

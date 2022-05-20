@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb_iner">
-              <h2>login</h2>
+              <h2>공지사항 등록</h2>
             </div>
           </div>
         </div>

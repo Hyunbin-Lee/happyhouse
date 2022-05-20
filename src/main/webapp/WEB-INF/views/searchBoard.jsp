@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb_iner">
-              <h2>login</h2>
+              <h2>공지사항</h2>
             </div>
           </div>
         </div>
@@ -34,8 +34,8 @@
 			<a href="${root}/board/list" class='btn btn-primary' >목록</a>
 			<a href="${root}/board/remove?no=${board.no}" 		class='btn btn-primary' >삭제</a>
 			
-<%-- 			<a href="${root}/board/updateForm?no=${board.no}" 	class='btn btn-primary' >수정</a>
- --%>		</td></tr>
+ 			<a href="${root}/board/updateForm?no=${board.no}" 	class='btn btn-primary' >수정</a>
+		</td></tr>
 		</table>
         </div>
       </div>

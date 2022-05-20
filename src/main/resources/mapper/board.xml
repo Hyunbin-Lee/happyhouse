@@ -31,7 +31,7 @@
 
 
 <!-- 번호로 게시글 검색 -->
-	<select id="search" parameterType="string" resultType="board">
+	<select id="search" parameterType="String" resultType="board">
 		select * from board where no=#{no}
 	</select>
 
@@ -68,9 +68,12 @@
 <!-- 게시글 수정  -->
 
 	<update id="updateBoard" parameterType="Board">
-		update board set
-		title=#{title},contents=#{contents},regdate=now()
-		where no=#{no}
+		update board
+		<trim prefix="set" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="contents != null">contents = #{contents}</if>
+		</trim>
+		where no = #{no}
 	</update>
 
 <!-- 게시글 삭제  -->

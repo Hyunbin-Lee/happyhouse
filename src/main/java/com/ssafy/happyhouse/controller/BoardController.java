@@ -53,14 +53,14 @@ public class BoardController {
 	
 	@GetMapping("/updateForm")
 	public String updateForm(String no, Model model) {
-		model.addAttribute("notebook", service.search(no));
-		return "board/update";
+		model.addAttribute("board", service.search(no));
+		return "updateBoard";
 	}
 	
-	@PostMapping("/update")
+	@PostMapping("/update/{no}")
 	public String update(Board board) {
 		service.updateBoard(board);
-		return "redirect:search?no="+board.getNo();
+		return "redirect:/board/search?no=" + board.getNo();
 	}
 	
 	@GetMapping("/remove")
