@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ssafy.happyhouse.model.dto.Board;
+import com.ssafy.happyhouse.model.dto.Member;
 import com.ssafy.happyhouse.model.dto.PageBean;
 import com.ssafy.happyhouse.service.BoardService;
 
@@ -45,7 +48,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/insert")
-	public String insert(Board board) {
+	public String insert(Board board, HttpSession session) {
+		Member member = (Member) session.getAttribute("memberInfo");
+		board.setAuthor(member.getId());
 		service.insertBoard(board);
 		return "redirect:/board/list";
 		//return "redirect:search?no="+board.getNo();

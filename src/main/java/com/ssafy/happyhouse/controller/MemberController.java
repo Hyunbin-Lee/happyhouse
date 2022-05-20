@@ -128,9 +128,9 @@ public class MemberController {
 	// 회원 탈퇴
 	@GetMapping("/delete")
 	public String delete(HttpSession session) throws SQLException {
-		Member member = (Member) session.getAttribute("memberInfo");
-		logger.info("회원정보삭제  ---------------------  : {}", member);
-		service.delete(member.getId());
+		String id = (String) session.getAttribute("id");
+		logger.info("회원정보삭제  ---------------------  : {}", id);
+		service.delete(id);
 		session.invalidate();
 		return "redirect:/";
 	}

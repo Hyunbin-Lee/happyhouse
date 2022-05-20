@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
-					<h2>공지사항 수정</h2>
+					<h2>공지사항</h2>
 				</div>
 			</div>
 		</div>
@@ -27,7 +27,11 @@
 		<div class="row align-items-center">
 			<div
 				class="col-lg-8 col-md-8 col-sm-8 container justify-content-center">
-
+				<div class="text-center">
+					<h3>
+						게시글 수정 <br />
+					</h3>
+				</div>
 				<div class="text-center"></div>
 				<form id="updateForm" class="row contact_form" action=""
 					method="post">

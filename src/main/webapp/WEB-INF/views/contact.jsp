@@ -4,6 +4,12 @@
 
 	
 <%@include file="header.jsp" %>
+<c:if test="${memberInfo.id == null}">
+	<script>
+		alert("로그인 후에 이용해주세요.");
+		location.href="${path}/user/login";
+	</script>
+</c:if>
 
     <!-- breadcrumb part start-->
     <section class="breadcrumb_part">

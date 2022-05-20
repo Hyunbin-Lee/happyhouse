@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb_iner">
-              <h2>공지사항 등록</h2>
+              <h2>공지사항</h2>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
                   <form id="writeForm" class="row contact_form" action="" method="post">
                   <div class="col-md-12 form-group p_star">
                     <label>작성자 이름</label>
-                    <input type="text" class="form-control" id="author" name="author" required/>
+                    <input type="text" class="form-control" id="author" name="author" value="<c:out value='${memberInfo.id}'/>" readonly="readonly"/>
                   </div>
                   
                   <div class="col-md-12 form-group p_star">
@@ -62,12 +62,9 @@
         <script type="text/javascript">
         $(document).ready(function () {
             $("#writeBtn").click(function () {
-                if (!$("#author").val()) {
-                    alert("작성자 입력!!!");
-                    return;
-                } else if (!$("#title").val()) {
+                if (!$("#title").val()) {
                     alert("제목 입력!!!");
-                    return; 
+                    return;
                 } else if (!$("#contents").val()) {
                     alert("내용 입력!!!");
                     return; 

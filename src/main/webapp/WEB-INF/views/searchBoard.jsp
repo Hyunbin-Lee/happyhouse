@@ -28,13 +28,15 @@
 		<table class='table'>
 		<tr><td>게시글 번호 </td><td>${board.no}</td></tr>
 		<tr><td>작성일</td><td>${board.rg_date}</td></tr>
+		<tr><td>작성자</td><td>${board.author}</td></tr>
 		<tr><td>제목 </td><td>${board.title}</td></tr>
 		<tr><td>내용</td><td>${board.contents}</td></tr>
 		<tr><td colspan="2" align="center">
 			<a href="${root}/board/list" class='btn btn-primary' >목록</a>
+			<c:if test="${memberInfo.id == board.author}">
 			<a href="${root}/board/remove?no=${board.no}" 		class='btn btn-primary' >삭제</a>
-			
  			<a href="${root}/board/updateForm?no=${board.no}" 	class='btn btn-primary' >수정</a>
+			</c:if>
 		</td></tr>
 		</table>
         </div>

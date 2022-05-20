@@ -11,7 +11,7 @@
 	</insert>
 
 	<!-- 회원 탈퇴 -->
-	<delete id='delete' parameterType="string">
+	<delete id='delete' parameterType="String">
 		delete from member where id=#{id}
 	</delete>
 

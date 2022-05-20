@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
+<c:if test="${memberInfo.id == null}">
+	<script>
+		alert("로그인 후에 이용해주세요.");
+		location.href="${path}/user/login";
+	</script>
+</c:if>
 <!doctype html>
 <html lang="">
 <head>
