@@ -62,6 +62,11 @@ public class Member implements Serializable {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public int getArticleno() {
+		// TODO Auto-generated method stub
+		return 0;
 	}     
 	
 

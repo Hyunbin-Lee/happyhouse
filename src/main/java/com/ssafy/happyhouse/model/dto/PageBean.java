@@ -13,7 +13,7 @@ public class PageBean implements Serializable{
 	/**현재 페이지 번호*/
 	private int pageNo;
 	/**한 페이지에 보여주 content 개수*/
-	private int interval = 3;
+	private int interval = 10;
 	/**페이지 시작 번호*/
 	private int start=0;
 	public PageBean() {	}

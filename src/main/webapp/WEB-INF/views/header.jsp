@@ -66,12 +66,12 @@
 								<li class="nav-item"><a class="nav-link"
 									href="${root}/contact">관심지역</a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="${root}/vueqna">Q&A</a></li>
+									href="${root}/qna/list">Q&A</a></li>
 
 								<c:choose>
 									<c:when test="${!empty memberInfo}">
 										<li class="nav-item dropdown"><a
-											class="nav-link dropdown-toggle" href="blog.jsp"
+											class="nav-link dropdown-toggle" href="${root}/user/memberInfo"
 											id="navbarDropdown_3" role="button" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false">
 												${memberInfo.name} </a>
@@ -79,7 +79,10 @@
 												<a class="dropdown-item" href="${root}/user/logout">
 													로그아웃 </a> <a class="dropdown-item"
 													href="${root}/user/memberInfo">마이페이지</a>
-
+													<c:if test="${memberInfo.id == 'admin'}">
+													<a class="dropdown-item"
+													href="${root}/admin/list">회원관리</a>
+													</c:if>
 											</div></li>
 										<li class="nav-item"><a class="nav-link" href=""></a></li>
 									</c:when>

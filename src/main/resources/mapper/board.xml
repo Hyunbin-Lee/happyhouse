@@ -45,7 +45,7 @@
 			<include refid="searchcon"></include>
 		</where>
 	<!-- 	<include refid="searchcon" /> -->
-		order by no asc
+		order by no desc
 		limit #{start}, #{interval}
 	</select>
 
