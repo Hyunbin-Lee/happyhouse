@@ -4,28 +4,44 @@
 
 <mapper namespace="com.ssafy.happyhouse.model.dao.MemberDao">
 
+	<!-- search condition -->
+	<sql id='searchcon'>
+		<if test="word != null and word !='' "></if><!-- 공백이 아니고 널이 아니면 -->
+		<choose>
+			<when test="key == 'id'">
+				id like concat('%',#{word},'%')
+			</when>
+			<when test=" key == 'name' ">
+				name like concat('%',#{word},'%')
+			</when>
+		</choose>
+	</sql>
+
 	<!-- 회원가입 -->
 	<insert id="register" parameterType="member">
 		insert into member
-		values (#{id},#{password},#{name},#{email},#{address},#{phone})
+		values
+		(#{id},#{password},#{name},#{email},#{address},#{phone})
 	</insert>
 
 	<!-- 회원 탈퇴 -->
 	<delete id='delete' parameterType="String">
-		delete from member where id=#{id}
+		delete from member where
+		id=#{id}
 	</delete>
 
 	<!-- 로그인 -->
 	<select id="login" parameterType="map" resultType="member">
 		select *
-		from member
+		from
+		member
 		where id = #{id} and password = #{password}
 	</select>
 
 	<!-- 회원정보 수정 -->
 	<update id="modify" parameterType="member">
 		update member
-		
+
 		<trim prefix="set" suffixOverrides=",">
 			<if test="password != null">password = #{password},</if>
 			<if test="email != null">email = #{email},</if>
@@ -35,29 +51,53 @@
 		where id = #{id}
 	</update>
 
-	<!-- 중복된 아이디 체크  -->
+	<!-- 중복된 아이디 체크 -->
 	<select id="idCheck" parameterType="string" resultType="int">
-		select count(userid)
+		select
+		count(userid)
 		from ssafy_member
 		where userid = #{userid}
 	</select>
-	
-	<!-- 아이디 유효성  체크  -->
-		<select id="inquire" parameterType="String" resultType="member">
+
+	<!-- 아이디 유효성 체크 -->
+	<select id="inquire" parameterType="String" resultType="member">
 		select *
 		from member
 		where id = #{id}
 	</select>
 
-
-
-	<!-- 비밀번호 찾기  -->
+	<!-- 비밀번호 찾기 -->
 	<select id="findPW" parameterType="map" resultType="string">
-		select password
+		select
+		password
 		from member
 		where id = #{id} and phone=#{phone}
 	</select>
-	
-	
-	
+
+	<!-- 모든 회원 검색 -->
+	<select id="searchAll" parameterType="PageBean"
+		resultType="member">
+		select *
+		<!-- no, id, title ,date_format(regdate, '%Y-%m-%d') as regdate -->
+		from member
+		<where>
+			<include refid="searchcon"></include>
+		</where>
+		<!-- <include refid="searchcon" /> -->
+		limit #{start}, #{interval}
+	</select>
+
+	<!-- 모든 회원 검색 -->
+	<select id="searchAll2" resultType="member">
+		select *
+		from member
+	</select>
+
+	<!-- 총 게시글 수 검색 -->
+	<select id="count" parameterType="PageBean" resultType="int">
+		select count(*) as cnt from member
+		<where>
+			<include refid="searchcon"></include>
+		</where>
+	</select>
 </mapper>
