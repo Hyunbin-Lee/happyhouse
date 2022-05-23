@@ -94,6 +94,7 @@
 								<th>이름</th>
 								<th>건축년도</th>
 								<th>주소</th>
+								<th>관심지역</th>
 							
 							</thead>
 							<tbody id="Aptinfo"></tbody>
@@ -179,13 +180,28 @@
 	
 	//table row click event 처리
 	$(document.body).delegate('#aptTable tbody tr', 'click', function(event) {
-		var rowId = event.target.parentNode.parentNode.id;
-        var data = document.getElementById(rowId).querySelectorAll(".row-data"); 
-        var recentPrice = data[1].innerHTML;
-        var aptName = data[2].innerHTML;
-        var buildYear = data[3].innerHTML;
-		openAptDetailModal(recentPrice,aptName,buildYear);
+		if(event.target.id != 'like-btn'){
+			// 테이블 행을 클릭했다면
+			var rowId = event.target.parentNode.parentNode.id;
+	        var data = document.getElementById(rowId).querySelectorAll(".row-data"); 
+	        var recentPrice = data[1].innerHTML;
+	        var aptName = data[2].innerHTML;
+	        var buildYear = data[3].innerHTML;
+			openAptDetailModal(recentPrice,aptName,buildYear);	
+		}else{
+			// 관심지역 버튼을 클릭했다면
+			var value = event.target.value;
+			if(value === 'empty'){
+				event.target.value = 'full';
+				event.target.src = "${root}/img/icon/full_heart.png"
+			}else{
+				event.target.value = 'empty';
+				event.target.src = "${root}/img/icon/empty_heart.png"
+			}
+		}
+		
 	});
+	
 	
 	function openAptDetailModal(recentPrice,aptName,buildYear){
 		$.get(root + "/map/apt/detail",
@@ -228,6 +244,7 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
+							"<td><button class = 'button'>버튼</button></td>"+
 							"</tr>";
 						$("tbody").append(str);
 					});
@@ -260,6 +277,9 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
+							"<td>"+
+							"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
+							+"</td>"+
 							"</tr>";
 						$("tbody").append(str);
 					});
@@ -322,6 +342,7 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
+							"<td><button class = 'button'>버튼</button></td>"+
 							"</tr>";
 						/*
 						let str = `
