@@ -16,6 +16,9 @@ public interface HouseMapDao {
 	List<HouseInfoDto> getDongInGugun(String gugun) throws SQLException;
 	List<HouseInfoDto> getAptInDong(String dong) throws SQLException;
 	List<HouseInfoDto> getAptInName(String aptName) throws SQLException;
+	List<HouseInfoDto> getFavorites() throws SQLException;
+	void removeFavorite(String aptCode) throws SQLException;
 	HouseInfoDto getAptDatail(Map<String,Object> map);
+	void updateIsfav(Map<String,Object> map);
 	
 }

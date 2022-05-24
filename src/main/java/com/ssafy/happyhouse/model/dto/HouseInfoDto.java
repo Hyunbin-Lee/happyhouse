@@ -20,8 +20,18 @@ public class HouseInfoDto {
 	private String dealDay;
 	private String area;
 	private String floor;
+	private boolean isfav;
 	
 	
+	
+	public boolean isIsfav() {
+		return isfav;
+	}
+
+	public void setIsfav(boolean isfav) {
+		this.isfav = isfav;
+	}
+
 	public String getDealYear() {
 		return dealYear;
 	}

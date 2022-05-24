@@ -47,7 +47,7 @@ function displayMarkers(places) {
 			});
 
 		    kakao.maps.event.addListener(map, "click", function () {
-		    	console.log(customOverlay);
+		    	//console.log(customOverlay);
 		    	customOverlay.setMap(null);
 		    });
 

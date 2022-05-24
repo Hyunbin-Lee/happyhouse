@@ -86,4 +86,25 @@ public class HouseMapServiceImpl implements HouseMapService {
 		return houseMapDao.getAptDatail(map);
 	}
 
+	@Override
+	public void updateIsfav(String aptName, String buildYear, String recentPrice, boolean isfav) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("aptName", aptName);
+		map.put("buildYear", buildYear);
+		map.put("recentPrice", recentPrice);
+		map.put("isfav", isfav);
+		houseMapDao.updateIsfav(map);
+	}
+
+	@Override
+	public List<HouseInfoDto> getFavorites() throws Exception {
+		return houseMapDao.getFavorites();
+	}
+
+	@Override
+	public void removeFavorite(String aptCode) throws Exception {
+		houseMapDao.removeFavorite(aptCode);
+		return;
+	}
+
 }

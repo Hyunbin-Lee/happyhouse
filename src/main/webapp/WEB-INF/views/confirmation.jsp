@@ -180,27 +180,47 @@
 	
 	//table row click event 처리
 	$(document.body).delegate('#aptTable tbody tr', 'click', function(event) {
+		var tr = $(this);
+		var td = tr.children();
+        var recentPrice = td.eq(1).text();
+        var aptName = td.eq(2).text();
+        var buildYear = td.eq(3).text();
 		if(event.target.id != 'like-btn'){
 			// 테이블 행을 클릭했다면
-			var rowId = event.target.parentNode.parentNode.id;
-	        var data = document.getElementById(rowId).querySelectorAll(".row-data"); 
-	        var recentPrice = data[1].innerHTML;
-	        var aptName = data[2].innerHTML;
-	        var buildYear = data[3].innerHTML;
 			openAptDetailModal(recentPrice,aptName,buildYear);	
 		}else{
 			// 관심지역 버튼을 클릭했다면
 			var value = event.target.value;
 			if(value === 'empty'){
+				// empty ==> full
 				event.target.value = 'full';
 				event.target.src = "${root}/img/icon/full_heart.png"
+				updateIsfavState(recentPrice,aptName,buildYear,true);
 			}else{
+				// full ==> empty
 				event.target.value = 'empty';
 				event.target.src = "${root}/img/icon/empty_heart.png"
+				updateIsfavState(recentPrice,aptName,buildYear,false);
 			}
 		}
 		
 	});
+	
+	 
+	function updateIsfavState(recentPrice,aptName,buildYear,isfav){
+		$.post(root + "/map/fav",
+				{"aptName" : aptName,
+				"buildYear" : buildYear,
+				"recentPrice" : recentPrice,
+				"isfav" : isfav
+				 },
+				function(data, status){
+					console.log(status);
+				}
+				, "json"
+		);
+	}
+	
 	
 	
 	function openAptDetailModal(recentPrice,aptName,buildYear){
@@ -243,9 +263,18 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.recentPrice+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
-							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
-							"<td><button class = 'button'>버튼</button></td>"+
-							"</tr>";
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>";
+							if(vo.isfav){
+								str += ("<td>"+
+								"<img src='${root}/img/icon/full_heart.png' id = 'like-btn' value = 'full'/>"
+								+"</td>"+
+								"</tr>");
+							}else{
+								str+=("<td>"+
+								"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
+								+"</td>"+
+								"</tr>");
+							}
 						$("tbody").append(str);
 					});
 					displayMarkers(data);
@@ -276,11 +305,20 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.recentPrice+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
-							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
-							"<td>"+
-							"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
-							+"</td>"+
-							"</tr>";
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"
+							;
+							if(vo.isfav){
+								str += ("<td>"+
+								"<img src='${root}/img/icon/full_heart.png' id = 'like-btn' value = 'full'/>"
+								+"</td>"+
+								"</tr>");
+							}else{
+								str+=("<td>"+
+								"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
+								+"</td>"+
+								"</tr>");
+							}
+							
 						$("tbody").append(str);
 					});
 					displayMarkers(data);
@@ -341,9 +379,18 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.recentPrice+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
-							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>"+
-							"<td><button class = 'button'>버튼</button></td>"+
-							"</tr>";
+							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>";
+							if(vo.isfav){
+								str += ("<td>"+
+								"<img src='${root}/img/icon/full_heart.png' id = 'like-btn' value = 'full'/>"
+								+"</td>"+
+								"</tr>");
+							}else{
+								str+=("<td>"+
+								"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
+								+"</td>"+
+								"</tr>");
+							}
 						/*
 						let str = `
 							<tr class="${colorArr[index%3]}">

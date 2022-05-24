@@ -14,7 +14,10 @@ public interface HouseMapService {
 	List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
 	List<HouseInfoDto> getAptInDong(String dong) throws Exception;
 	List<HouseInfoDto> getAptInName(String aptName) throws Exception;
+	List<HouseInfoDto> getFavorites() throws Exception;
+	void removeFavorite(String aptCode) throws Exception;
 	HouseInfoDto getAptDetail(String aptName,String buildYear,String recentPrice) throws Exception;
+	void updateIsfav(String aptName,String buildYear,String recentPrice, boolean isfav) throws Exception;
 	List<HouseInfoDto> sortApt(String criteria, String dong) throws Exception;
 	
 }

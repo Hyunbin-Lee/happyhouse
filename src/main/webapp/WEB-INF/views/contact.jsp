@@ -26,7 +26,7 @@
     <!-- breadcrumb part end-->
     <div class="container text-center" style="margin-top: 10px;">
      
-      <h1><a href="airInfo.html">관심지역 대기정보 보러가기</a></h1>
+      <!-- <h1><a href="airInfo.html">관심지역 대기정보 보러가기</a></h1> -->
     
     </div>
     <!-- ================ contact section start ================= -->
@@ -35,7 +35,7 @@
       <div class="container årow justify-content-center">
         
         <div class="col-xl-12">
-          <table class="table">
+          <table class="table" id='favTable'>
             <h3>관심지역 리스트</h3>
             <p>리스트를 클릭하면 해당 지역으로 이동합니다.</p>
             <thead>
@@ -44,27 +44,21 @@
                 <th scope="col">군/구</th>
                 <th scope="col">읍/면/동</th>
                 <th scope="col">아파트이름</th>
-              </tr>
-              <tr onclick="a($(this))">
-                <td scope="si">서울</td>
-                <td scope="gungu">송파구</td>
-                <td scope="dong">가락동</td>
-                <td scope="APT">헬리오시티 아파트</td>
-              </tr>
-              <tr onclick="a($(this))">
-                <td scope="si">서울</td>
-                <td scope="gungu">송파구</td>
-                <td scope="dong">장지동</td>
-                <td scope="APT">파크하비오 아파트</td>
+                <th scope="col">관심지역</th>
               </tr>
               <script>
                 function a(aaaaa) {
                   var SelectList = ``;
-                  $(aaaaa)
+                  var tds = $(aaaaa).find("td");
+                  for(var i = 0; i < 4; i++){
+                	  SelectList = SelectList + tds.eq(i).text() + " ";
+                  }
+                  /* $(aaaaa)
                     .find("td")
                     .each(function () {
                       SelectList = SelectList + $(this).text() + " ";
                     });
+                  SelectList = SelectList.replace("삭제",""); */
                   console.log(SelectList);
 
                   // 장소 검색 객체를 생성합니다
@@ -111,7 +105,8 @@ function displayMarker(place) {
                 }
               </script>
             </thead>
-            <tbody id="tableBody"></tbody>
+            <tbody id="tableBody">
+            </tbody>
           </table>
         </div>
       </div>
@@ -155,7 +150,7 @@ function displayMarker(place) {
         </div>
         <script
           type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f3b1d83ead55bfa5bc25c76e3210799&libraries=services"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63a4f1adc97e1470f0d388abff841833&libraries=services"
         ></script>
         <script>
           // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
@@ -454,8 +449,66 @@ function displayMarker(place) {
       </div>
     </div> -->
     </section>
+	<script>
+		$(document.body).delegate('#favTable tbody tr', 'click', function(event) {
+			/* var tr = $(this);
+			var td = tr.children();
+	        var recentPrice = td.eq(1).text();
+	        var aptName = td.eq(2).text();
+	        var buildYear = td.eq(3).text(); */
+			if(event.target.id == 'cancel-btn'){
+			    if (confirm("관심지역 목록에서 삭제를 하시겠습니까?")) {
+			        // 확인(예) 버튼 클릭 시 이벤트
+			    	removeFavItem($(this).find("td").eq(5).text());
+			        getFavList();
+			    }
+			}else{
+				a($(this));
+			}
+			
+		});
+	
+	    $(document).ready(getFavList());
+	    
+	    function removeFavItem(aptCode){
+	    	console.log(aptCode);
+	    	$.post("${root}/map/fav/remove",
+					{"aptCode" : aptCode,
+					 },
+					function(data, status){
+						console.log(status);
+					}
+					, "json"
+			);
+	    }
+	    
+	    function getFavList(){
+			$.get("${root}/map/fav"
+				,function(data, status){
+				$("tbody").empty();
+				console.log("tbody emptied")
+					$.each(data, function(index, vo) {
+						$("#tableBody").append(
+								"<tr>"+
+								"<td>"+vo.sidoName+"</td>"+
+								"<td>"+vo.gugunName+"</td>"+
+								"<td>"+vo.dongName+"</td>"+
+								"<td>"+vo.aptName+"</td>"+
+								"<td>"+
+								"<button class = 'btn btn-info' id = 'cancel-btn'>삭제</button>"
+								+"</td>"+
+								"<td hidden>"+vo.aptCode+
+								"</td>"+
+								"</tr>"
+						);
+					});
+				}
+				, "json"
+			);
+		}
+	    
+    </script>
     <!-- ================ contact section end ================= -->
 <%@include file="footer.jsp" %>
-
   </body>
 </html>

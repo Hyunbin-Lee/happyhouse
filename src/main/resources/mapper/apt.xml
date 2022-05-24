@@ -26,7 +26,8 @@
 	
 	<select id="getAptInDong" parameterType="string" resultType="houseInfoDto">
 		select h.aptCode, h.aptName, h.buildyear, h.dongCode, h.dongName, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
-				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice,
+				(select isfav from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) isfav
 		from houseinfo h
 		left join sidocode si
 		on left(h.dongcode,2) = left(si.sidocode,2)
@@ -39,7 +40,8 @@
 	
 	<select id="getAptInName" parameterType="string" resultType="houseInfoDto">
 		select h.aptCode, h.aptName, h.buildyear, h.dongCode, h.dongName, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
-				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
+				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice,
+				(select isfav from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) isfav
 		from houseinfo h
 		left join sidocode si
 		on left(h.dongcode,2) = left(si.sidocode,2)
@@ -63,5 +65,32 @@
 		and buildYear like #{buildYear}) and
 		d.dealAmount like concat('%',#{recentPrice},'%');
 	</select>
+	
+	<select id="getFavorites" resultType="houseInfoDto">
+		select * from housedeal as d
+		inner join houseinfo as i
+		on d.aptCode = i.aptCode 
+		left join sidocode si
+		on left(i.dongcode,2) = left(si.sidocode,2)
+		left join guguncode gu
+		on left(i.dongcode,5) = left(gu.guguncode,5)
+		where isfav = true;
+	</select>
+	
+	<update id="updateIsfav" parameterType="Map">
+		update housedeal set isfav = #{isfav} 
+		where aptCode = (
+			select aptCode from houseinfo
+			where aptName like #{aptName} 
+			and buildYear like #{buildYear}
+		)
+		and
+		dealAmount like concat('%',#{recentPrice},'%');
+	</update>
+	
+	<update id="removeFavorite" parameterType="string">
+		update housedeal set isfav = false 
+		where aptCode = #{aptCode}
+	</update>
 	
 </mapper>

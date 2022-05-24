@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +27,28 @@ public class HouseMapController {
 
 	@Autowired
 	private HouseMapService haHouseMapService;
+	
+	
+	
+	@PostMapping("/fav")
+	public void fav(
+			@RequestParam("aptName") String aptName,
+			@RequestParam("buildYear") String buildYear,
+			@RequestParam("recentPrice") String recentPrice,
+			@RequestParam("isfav") boolean isfav
+			) throws Exception {
+		haHouseMapService.updateIsfav(aptName, buildYear, recentPrice, isfav);
+	}
+	
+	@GetMapping("/fav")
+	public ResponseEntity<List<HouseInfoDto>> fav() throws Exception {
+		return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.getFavorites(), HttpStatus.OK);
+	}
+	@PostMapping("/fav/remove")
+	public void removeFav(@RequestParam("aptCode") String aptCode) throws Exception {
+		haHouseMapService.removeFavorite(aptCode);
+		return;
+	}
 	
 	@GetMapping("/sido")
 	public ResponseEntity<List<SidoGugunCodeDto>> sido() throws Exception {
