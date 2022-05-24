@@ -45,9 +45,9 @@ public class HouseMapController {
 		return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.getFavorites(), HttpStatus.OK);
 	}
 	@PostMapping("/fav/remove")
-	public void removeFav(@RequestParam("aptCode") String aptCode) throws Exception {
+	public ResponseEntity<List<HouseInfoDto>> removeFav(@RequestParam("aptCode") String aptCode) throws Exception {
 		haHouseMapService.removeFavorite(aptCode);
-		return;
+		return new ResponseEntity<List<HouseInfoDto>>(haHouseMapService.getFavorites(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/sido")

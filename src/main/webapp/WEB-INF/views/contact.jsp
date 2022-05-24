@@ -460,7 +460,21 @@ function displayMarker(place) {
 			    if (confirm("관심지역 목록에서 삭제를 하시겠습니까?")) {
 			        // 확인(예) 버튼 클릭 시 이벤트
 			    	removeFavItem($(this).find("td").eq(5).text());
-			        getFavList();
+			        //getFavList();
+	/* 		        removedString = "<tr>"+
+					"<td>"+$(this).find("td").eq(1).text()+"</td>"+
+					"<td>"+$(this).find("td").eq(2).text()+"</td>"+
+					"<td>"+$(this).find("td").eq(3).text()+"</td>"+
+					"<td>"+$(this).find("td").eq(4).text()+"</td>"+
+					"<td>"+
+					"<button class = 'btn btn-info' id = 'cancel-btn'>삭제</button>"
+					+"</td>"+
+					"<td hidden>"+$(this).find("td").eq(5).text()+
+					"</td>"+
+					"</tr>";
+					console.log("inner HTML : " + $('#tableBody')[0].innerHTML);
+					console.log("removedString : " + removedString);
+					//$('#tableBody')[0].innerHTML = $('#tableBody')[0].innerHTML.replace(removedString,""); */
 			    }
 			}else{
 				a($(this));
@@ -470,13 +484,34 @@ function displayMarker(place) {
 	
 	    $(document).ready(getFavList());
 	    
+	    function appendFavitemToList(tbody, vo){
+	    	tbody.append(
+					"<tr>"+
+					"<td>"+vo.sidoName+"</td>"+
+					"<td>"+vo.gugunName+"</td>"+
+					"<td>"+vo.dongName+"</td>"+
+					"<td>"+vo.aptName+"</td>"+
+					"<td>"+
+					"<button class = 'btn btn-info' id = 'cancel-btn'>삭제</button>"
+					+"</td>"+
+					"<td hidden>"+vo.aptCode+
+					"</td>"+
+					"</tr>"
+			);
+	    }
+	    
+	    
 	    function removeFavItem(aptCode){
 	    	console.log(aptCode);
 	    	$.post("${root}/map/fav/remove",
 					{"aptCode" : aptCode,
 					 },
 					function(data, status){
-						console.log(status);
+						$("tbody").empty();
+						console.log("tbody emptied")
+							$.each(data, function(index, vo) {
+								appendFavitemToList($("#tableBody"),vo);
+							});
 					}
 					, "json"
 			);
@@ -485,22 +520,8 @@ function displayMarker(place) {
 	    function getFavList(){
 			$.get("${root}/map/fav"
 				,function(data, status){
-				$("tbody").empty();
-				console.log("tbody emptied")
 					$.each(data, function(index, vo) {
-						$("#tableBody").append(
-								"<tr>"+
-								"<td>"+vo.sidoName+"</td>"+
-								"<td>"+vo.gugunName+"</td>"+
-								"<td>"+vo.dongName+"</td>"+
-								"<td>"+vo.aptName+"</td>"+
-								"<td>"+
-								"<button class = 'btn btn-info' id = 'cancel-btn'>삭제</button>"
-								+"</td>"+
-								"<td hidden>"+vo.aptCode+
-								"</td>"+
-								"</tr>"
-						);
+						appendFavitemToList($("#tableBody"),vo);
 					});
 				}
 				, "json"
