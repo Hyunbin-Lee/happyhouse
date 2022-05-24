@@ -28,7 +28,7 @@ public class QnaServiceImp implements QnaService {
 	}
 	
 	@Override
-	public void answerQna(Qna qna) {
+	public void insertAs(Qna qna) {
 		logger.info("answer ========================== qna {}", qna);
 		dao.answerQna(qna);
 	}
@@ -87,6 +87,11 @@ public class QnaServiceImp implements QnaService {
 	@Override
 	public void updateQna(Qna qna) {
 		dao.updateQna(qna);
+	}
+	
+	@Override
+	public void updateAs(Qna qna) {
+		dao.answerQna(qna);
 	}
 
 	@Override

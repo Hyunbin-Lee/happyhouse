@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="header.jsp"%>
+<style>
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #D1D1D1;
+}
+</style>
 <section class="breadcrumb_part">
 	<div class="container">
 		<div class="row">
@@ -20,7 +25,7 @@
 	<div class="container">
 		<form id="frm">
 			<input type="hidden" id="no" name="no" />
-			<table class='table'>
+			<table class='table table-hover'>
 				<tr align="center">
 					<div class="table">
 						<select style="font-size:14px; width:100px; height:33.5px;" name="key" id="key">
@@ -39,9 +44,9 @@
 
 				<tr align="center">
 					<th width="25">번호</th>
-					<th width="200"><a href='javascript:sort(1)'>제목</a></th>
-					<th width="50"><a href='javascript:sort(2)'>작성자</a></th>
-					<th width="50"><a href='javascript:sort(3)'>등록일</a></th>
+					<th width="200">제목</th>
+					<th width="50">작성자</th>
+					<th width="50">등록일</th>
 				</tr>
 
 				<tbody id="data-container">

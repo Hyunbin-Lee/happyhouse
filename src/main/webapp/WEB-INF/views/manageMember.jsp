@@ -20,7 +20,7 @@
 	<div class="container">
 		<form id="frm">
 			<input type="hidden" id="id" name="id" />
-			<table class='table'>
+			<table class='table' id="memberTable">
 				<tr align="center">
 					<div class="table">
 						<select style="font-size: 14px; width: 100px; height: 33.5px;"
@@ -30,17 +30,18 @@
 							<option value="name">이름</option>
 						</select> <input type="text" style="height: 34px" id="word" name="word" />
 						<input type="hidden" id="pageNo" name="pageNo" value='1' /> <input
-							class='btn  btn-secondary btn-sm' type="button" value="검색" id="search">
+							class='btn  btn-secondary btn-sm' type="button" value="검색"
+							id="search">
 					</div>
 				</tr>
 
 				<tr align="center">
-					<th width="50"><a href='javascript:sort(1)'>아이디</a></th>
-					<th width="50"><a href='javascript:sort(2)'>이름</a></th>
-					<th width="100"><a href='javascript:sort(3)'>이메일</a></th>
-					<th width="100"><a href='javascript:sort(4)'>주소</a></th>
-					<th width="50"><a href='javascript:sort(5)'>전화번호</a></th>
-					<th width="40"><a href='javascript:sort(6)'>회원탈퇴</a></th>
+					<th width="50">아이디</th>
+					<th width="50">이름</th>
+					<th width="100">이메일</th>
+					<th width="100">주소</th>
+					<th width="50">전화번호</th>
+					<th width="40">회원탈퇴</th>
 				</tr>
 				<tbody id="data-container">
 					<c:forEach var='member' items="${list}">
@@ -73,16 +74,8 @@
 		</c:if>
 		$('#word').val("${param.word}")
 		$('#pageNo').val("${param.pageNo}")
-	})
+	});
 	
-
-	function  searchMember(id) {
-		var frm = document.getElementById('frm');
-		var noForm = document.getElementById('id');
-		noForm.value= id;
-		frm.action="search"
-		frm.submit();
-	}
 	
 	function pagelist(cpage){
 		var frm = document.getElementById('frm');
@@ -90,21 +83,21 @@
 		pageNo.value=cpage;
 		frm.action="list"
 		frm.submit();
-	}
+	};
 	
-	$(document).ready(function() {
-		$("#deleteBtn").click(function() {
-			var d = confirm('정말로 탈퇴하겠습니까?');
-			if (d) {
-				alert('회원탈퇴 완료');
-				$("#updateForm").attr("action", "/admin/delete").submit();
-			} else {
-				alert('탈퇴가 취소되었습니다.');
-			}
-
-		})
-
+	$(document.body).delegate('#memberTable tbody tr', 'click', function(){
+		var tr = $(this);
+		var td = tr.children();
+		var memberId = td.eq(0).text();
+		var d = confirm('정말로 탈퇴하겠습니까?');
+		if (d) {
+			alert('회원탈퇴 완료');
+			$.post("/admin/delete", {"memberId": memberId}, "json");
+		} else {
+			alert('탈퇴가 취소되었습니다.');
+		}
 	})
+	
 </script>
 
 

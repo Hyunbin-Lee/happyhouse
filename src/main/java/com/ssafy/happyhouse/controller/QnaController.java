@@ -68,18 +68,17 @@ public class QnaController {
 		return "redirect:/qna/search?articleno=" + qna.getArticleno();
 	}
 	
-	@GetMapping("/answerForm/{articleno}")
+	@GetMapping("/answerForm")
 	public String answerForm(String articleno, Model model) {
-//		model.addAttribute("qna", service.search(articleno));
-		service.search(articleno);
+		model.addAttribute("qna", service.search(articleno));
+		System.out.println();
 		return "answerQna";
 	}
 	
-	@PostMapping("/answer/{articleno}")
-	public String answer(Qna qna) {
-		service.answerQna(qna);
+	@PostMapping("/insertAs/{articleno}")
+	public String insertAs(Qna qna) {
+		service.insertAs(qna);
 		return "redirect:/qna/search?articleno=" + qna.getArticleno();
-		//return "redirect:search?no="+board.getNo();
 	}
 	
 	@GetMapping("/updateAsForm")
@@ -90,7 +89,7 @@ public class QnaController {
 	
 	@PostMapping("/updateAs/{articleno}")
 	public String updateAs(Qna qna) {
-		service.updateQna(qna);
+		service.updateAs(qna);
 		return "redirect:/qna/search?articleno=" + qna.getArticleno();
 	}
 	

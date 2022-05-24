@@ -7,7 +7,7 @@
 </c:if>
 
 <%@include file="header.jsp"%>
-<!-- breadcrumb part start-->
+<!-- breadcrumb part start--> 
 <section class="breadcrumb_part">
 	<div class="container">
 		<div class="row">
@@ -38,7 +38,8 @@
 					method="post">
 					<div class="col-md-12 form-group p_star">
 						<label>답변 내용</label>
-						<textarea class="form-control" style="height:200px" id="answer" name="answer"></textarea>
+						<textarea class="form-control" style="height: 200px" id="answer"
+							name="answer"></textarea>
 					</div>
 					<div class="col-md-12 form-group">
 						<button type="button" class="btn_3" id="writeAsBtn">작성완료</button>
@@ -52,15 +53,15 @@
 <!--================login_part end =================-->
 <script type="text/javascript">
 	$(document).on("click", "#writeAsBtn", function() {
-							if (!$("#answer").val()) {
-								alert("내용 입력!!!");
-								return;
-							} else {
-								$("#writeAsForm").attr("action",
-										"/qna/answer/${qna.articleno}")
-										.submit();
-							}
-						});
+		if (!$("#answer").val()) {
+			alert("내용 입력!!!");
+			return;
+		} else {
+		$("#writeAsForm").attr("action", "/qna/insertAs/${qna.articleno}").submit();
+		}
+	});
+	
+	
 </script>
 
 <%@include file="footer.jsp"%>

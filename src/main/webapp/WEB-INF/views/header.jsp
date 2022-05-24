@@ -35,6 +35,7 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e9620381df0a5f019b155d5b376af607&libraries=services"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 	<header class="main_menu home_menu">

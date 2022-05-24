@@ -62,8 +62,6 @@ public class MemberController {
 		
 	}
 	
-	
-	
 	// 회원가입
 	@PostMapping("/register")
 	public String register(Member member) throws SQLException {

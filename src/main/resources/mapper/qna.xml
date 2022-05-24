@@ -70,14 +70,9 @@
 	</insert>
 	
 	<!-- 게시글답변 등록 -->
-	<insert id="answerQna" parameterType="Qna">
-		insert into qna(
-			answer
-		) values (
-			#{answer}
-		)
-		where articleno = #{articleno}
-	</insert>
+	<update id="answerQna" parameterType="Qna">
+		update qna set answer = #{answer} where articleno = #{articleno};
+	</update>
 	
 	<!-- 게시글 수정 -->
 	<update id="updateQna" parameterType="Qna">

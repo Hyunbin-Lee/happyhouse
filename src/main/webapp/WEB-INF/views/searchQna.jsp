@@ -5,7 +5,11 @@
 	<c:set var="saveid" value="${cookie.ssafy_id.value}" />
 	<c:set var="idck" value=" checked=\"checked\"" />
 </c:if>
-
+<style>
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #D1D1D1;
+}
+</style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start-->
 <section class="breadcrumb_part">
@@ -25,7 +29,7 @@
 <section class="login_part section_padding">
 	<div class="container">
 		<div class="">
-			<table class='table'>
+			<table class='table table-hover'>
 				<tr align="center mb-5">
 					<div class="table">
 						<c:if test="${qna.answer != null}">
@@ -33,11 +37,11 @@
 						</c:if>
 						<c:if test="${memberInfo.id == 'admin'}">
 							<c:if test="${qna.answer == null}">
-								<a href="${root}/qna/answerForm/${qna.articleno}"
+								<a href="${root}/qna/answerForm?articleno=${qna.articleno}"
 									class="btn btn-info">답변하기</a>
 							</c:if>
 							<c:if test="${qna.answer != null}">
-								<a href="${root}/qna/updateAsForm" class="btn btn-info">답변수정</a>
+								<a href="${root}/qna/updateAsForm?articleno=${qna.articleno}" class="btn btn-info">답변수정</a>
 							</c:if>
 						</c:if>
 					</div>

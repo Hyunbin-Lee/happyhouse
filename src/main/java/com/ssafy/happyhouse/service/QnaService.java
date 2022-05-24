@@ -10,7 +10,7 @@ public interface QnaService {
 	public void insertQna(Qna qna);
 
 	// 게시글답변 작성 C
-	public void answerQna(Qna qna);
+	public void insertAs(Qna qna);
 
 	// 번호로 게시글 검색 R
 	public Qna search(String articleno);
@@ -23,4 +23,7 @@ public interface QnaService {
 
 	// 게시글 삭제 D
 	public void deleteQna(String articleno);
+
+	// 게시글답변 수정 U
+	void updateAs(Qna qna);
 }

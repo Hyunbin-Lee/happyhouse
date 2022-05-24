@@ -75,9 +75,9 @@ public class PageUtility {
         sb.append("<ul class='pagination   justify-content-center'>");
         sb.append("<li class='page-item'>");
         if(firstpagecount>pagePercount)
-            sb.append("<a class='page-link'  href='javascript:pagelist("+beforetenpage+")'>맨처음</a>");
+            sb.append("<a class='page-link'  href='javascript:pagelist("+beforetenpage+")'>처음</a>");
         else
-            sb.append("<a class='page-link .disabled'  href='#'>맨처음</a>");
+            sb.append("<a class='page-link .disabled'  href='#'>처음</a>");
         sb.append("</li>");
         
         
@@ -105,15 +105,15 @@ public class PageUtility {
         
         sb.append("<li class='page-item'>");
         if(nexttenpage<((totalpagecount-1)/pagePercount+1)*pagePercount)
-            sb.append("<a class='page-link' href='javascript:pagelist("+ (nexttenpage)+ ")'>Next</a>");
+            sb.append("<a class='page-link' href='javascript:pagelist("+ (nexttenpage)+ ")'>다음</a>");
         else
-            sb.append("<a class='page-link .disabled' href='#'>Next</a>");
+            sb.append("<a class='page-link .disabled' href='#'>다음</a>");
         sb.append("</li>");
         
         if((((currentpagecount-1)/pagePercount)+1)*pagePercount < nexttenpage)
-            sb.append("<a href='javascript:pagelist("+ (nexttenpage)+")'>맨끝</a>");
+            sb.append("<a href='javascript:pagelist("+ (nexttenpage)+")'>끝</a>");
         else
-        	sb.append("<a class='page-link .disabled' href='#'>맨끝</a>");
+        	sb.append("<a class='page-link .disabled' href='#'>끝</a>");
         
         sb.append("</ul>");
       

@@ -25,7 +25,6 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public void delete(String id) throws SQLException {
 		memberDao.delete(id);
-
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssafy.happyhouse.model.dto.Member;
 import com.ssafy.happyhouse.model.dto.PageBean;
@@ -31,8 +32,8 @@ public class AdminController {
 		return "/manageMember";
 	}
 	
-	@PostMapping("/delete/{member.id}")
-	public String remove(String id) throws SQLException {
+	@PostMapping("/delete")
+	public String remove(@RequestParam("memberId") String id) throws SQLException {
 		service.delete(id);
 		return "redirect:/admin/list";
 	}
