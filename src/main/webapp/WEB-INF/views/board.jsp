@@ -3,19 +3,23 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #D1D1D1;
+	background-color: #D1D1D1;
 }
-input[type="text"]{
-  line-height: 16px;
-  vertical-align: middle;
+
+input[type="text"] {
+	line-height: 16px;
+	vertical-align: middle;
 }
-select{
-  height: 20px;
-  vertical-align: middle;
+
+select {
+	height: 20px;
+	vertical-align: middle;
 }
-td, th {
-  text-align : center;
-  vertical-align : middle;
+
+th, td {
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
 }
 </style>
 <%@include file="header.jsp"%>
@@ -39,14 +43,17 @@ td, th {
 			<table class='table table-hover mb-5'>
 				<tr align="center">
 					<div class="table mb-5">
-						<select class="ip" style="font-size:15px; width:100px; height:39px;" name="key" id="key">
+						<select class="ip"
+							style="font-size: 15px; width: 100px; height: 39px;" name="key"
+							id="key">
 							<option value="all">구분</option>
 							<option value="no">번호</option>
 							<option value="title">제목</option>
 							<option value="contents">내용</option>
-						</select> <input type="text" style="height:39px" id="word" name="word" /> <input type="hidden"
-							id="pageNo" name="pageNo" value='1' /> <input
-							class='btn  btn-outline-info' type="button" value="검색" id="search">
+						</select> <input type="text" style="height: 39px" id="word" name="word" />
+						<input type="hidden" id="pageNo" name="pageNo" value='1' /> <input
+							class='btn  btn-outline-info' type="button" value="검색"
+							id="search">
 						<c:if test="${memberInfo.id == 'admin'}">
 							<a class='btn btn-info float-right mr-3' href="writeBoard">글쓰기</a>
 						</c:if>
@@ -62,13 +69,13 @@ td, th {
 
 				<tbody id="data-container">
 					<c:forEach var='board' items="${list}">
-						<tr align="center">
-							<td width="25"><a href='javascript:searchBoard(${board.no})'>${board.no}</a></td>
-							<td width="200" class="boardContent"><a
+						<tr>
+							<td class="text-center" width="25"><a href='javascript:searchBoard(${board.no})'>${board.no}</a></td>
+							<td class="text-center" width="200" class="boardContent"><a
 								href='javascript:searchBoard("${board.no}")'>${board.title}</a>
 							</td>
-							<td width="50">${board.author}</td>
-							<td width="50">${board.rg_date}</td>
+							<td class="text-center" width="50">${board.author}</td>
+							<td class="text-center" width="50">${board.rg_date}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

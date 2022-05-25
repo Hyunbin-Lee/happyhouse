@@ -7,7 +7,7 @@
 </c:if>
 <style>
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: white;
+	background-color: white;
 }
 </style>
 <%@include file="header.jsp"%>
@@ -46,8 +46,11 @@
 					<td>제목</td>
 					<td>${board.title}</td>
 				</tr>
-				<tr><td>내용</td><td><textarea class="form-control float-center" id="contents" name="contents"
-						style="width:850px; height:300px" readonly>${board.contents}</textarea></td></tr>
+				<tr>
+					<td>내용</td>
+					<td><textarea class="form-control float-center" id="contents"
+							name="contents" style="width: 850px; height: 300px" readonly>${board.contents}</textarea></td>
+				</tr>
 			</table>
 			<table class="table">
 				<tr align="center">
@@ -63,6 +66,23 @@
 				</tr>
 			</table>
 		</div>
+		<hr>
+
+		<!--  댓글  -->
+		<div class="container">
+			        <label class="mt-5" for="content">comment</label>        
+			<form name="commentInsertForm">
+				<div class="input-group">
+					<input type="hidden" name="bno" value="${board.no}" />
+					<input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+						<button class="btn btn-secondary" type="button" name="commentInsertBtn">등록</button>               
+				</div>
+			</form>
+		</div>
+		<div class="container">
+			<div class="commentList"></div>
+		</div>
+		<%@include file="comment.jsp"%>
 	</div>
 </section>
 <!--================login_part end =================-->

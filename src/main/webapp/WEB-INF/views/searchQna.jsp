@@ -9,6 +9,9 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #D1D1D1;
 }
+.btn-hover{
+	pointer-events: none;
+}
 </style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start-->
@@ -33,7 +36,7 @@
 				<tr align="center mb-5">
 					<div class="table mb-5">
 						<c:if test="${qna.answer != null}">
-							<a class="btn btn-outline-info float-right mb-5">답변완료</a>
+							<a class="btn btn-outline-info btn-hover float-right mb-5">답변완료</a>
 						</c:if>
 						<c:if test="${memberInfo.id == 'admin'}">
 							<c:if test="${qna.answer == null}">

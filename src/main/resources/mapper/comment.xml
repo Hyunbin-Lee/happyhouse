@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.dao.CommentMapper">
+
+	<select id="commentCount" resultType="int">
+		select count(*) from comment
+	</select>
+	
+	<select id="commentList" resultType="comment">
+		select * from comment
+	</select>
+	
+	<insert id="commentInsert" parameterType="comment">
+		insert into comment(cno, bno, content, userid, reg_date)
+		values(#{cno}, #{bno}, #{content}, #{userid}, now())
+	</insert>
+	
+	<update id="commentUpdate" parameterType="comment">
+		update comment
+		set content = #{content}
+		where cno = #{cno}
+	</update>
+	
+	<delete id="commentDelete" parameterType="int">
+		delete from comment
+		where cno = #{cno}
+	</delete>
+</mapper>

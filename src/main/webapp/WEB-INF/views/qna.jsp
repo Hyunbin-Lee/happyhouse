@@ -5,6 +5,9 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #D1D1D1;
 }
+.btn-hover{
+	pointer-events: none;
+}
 input[type="text"]{
   line-height: 16px;
   vertical-align: middle;
@@ -13,9 +16,10 @@ select{
   height: 20px;
   vertical-align: middle;
 }
-td, th {
-  text-align : center;
-  vertical-align : middle;
+th, td {
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
 }
 </style>
 <%@include file="header.jsp"%>
@@ -25,6 +29,7 @@ td, th {
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
 					<a class="nav-link" href="${root}/qna/list"><h2>QnA</h2></a>
+					<p>happyhouse는 여러분의 소중한 의견에 항상 귀 기울이고 있습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -59,6 +64,7 @@ td, th {
 					<th width="200">제목</th>
 					<th width="50">작성자</th>
 					<th width="50">등록일</th>
+					<th width="50">답변여부</th>
 				</tr>
 
 				<tbody id="data-container">
@@ -70,6 +76,10 @@ td, th {
 							</td>
 							<td width="50">${qna.userid}</td>
 							<td width="50">${qna.regtime}</td>
+							<c:if test="${qna.answer == null}">
+							<td width="50"><a class="btn btn-outline-info btn-hover">답변대기</a></td></c:if>
+							<c:if test="${qna.answer != null}">
+							<td width="50"><a class="btn btn-info btn-hover">답변완료</a></td></c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
