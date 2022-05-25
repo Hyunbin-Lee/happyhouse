@@ -77,33 +77,7 @@
     </script>
     
      
-   	<%@include file="footer.jsp" %>
-    <script>
-	    $(document).ready(function(){
-			$.get("${root}/articles",
-				{pageNo: 1},
-				function(data, status){
-					var div_news = $("#div-news")[0];
-					$.each(data, function(index, vo) {
-						if(index<6){
-							div_news.innerHTML += 
-								"<div class='col-lg-4 col-sm-6'>"+
-			                    "<div class='single_product_item'>"+
-		                        "<img src='"+vo.imgURL+"'  alt='#' class='img-fluid' width=400px>"+
-		                        "<h3> <a href='"+vo.titleLink+"'>"+vo.title+"</a> </h3>"+
-		                        "<p> <a href='"+vo.bodyLink+"'>"+vo.body+"</p>"+
-			                    "</div>"+
-			                 	"</div>";
-						}
-					});
-				}
-				, "json"
-			);
-		});
-    </script>
-    
-     
-   	<%@include file="footer.jsp" %>
+   	
     <script>
 	    $(document).ready(function(){
 			$.get("${root}/articles",
