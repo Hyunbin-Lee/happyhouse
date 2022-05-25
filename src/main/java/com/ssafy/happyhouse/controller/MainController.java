@@ -9,6 +9,10 @@ public class MainController {
 	public String test() {
 		return "index";
 	}
+	@GetMapping("/newsView")
+	public String news() {
+		return "/news";
+	}
 	@GetMapping("/about")
 	public String about() {
 		return "/about";
