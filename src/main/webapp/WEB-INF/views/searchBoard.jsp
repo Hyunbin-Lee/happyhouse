@@ -7,7 +7,7 @@
 </c:if>
 <style>
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #D1D1D1;
+  background-color: white;
 }
 </style>
 <%@include file="header.jsp"%>
@@ -46,7 +46,7 @@
 					<td>제목</td>
 					<td>${board.title}</td>
 				</tr>
-				<tr><td>내용</td><td><textarea class="form-control" id="contents" name="contents"
+				<tr><td>내용</td><td><textarea class="form-control float-center" id="contents" name="contents"
 						style="width:850px; height:300px" readonly>${board.contents}</textarea></td></tr>
 			</table>
 			<table class="table">

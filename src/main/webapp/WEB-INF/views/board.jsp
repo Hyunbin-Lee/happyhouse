@@ -1,19 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@include file="header.jsp"%>
 <style>
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #D1D1D1;
 }
+input[type="text"]{
+  line-height: 16px;
+  vertical-align: middle;
+}
+select{
+  height: 20px;
+  vertical-align: middle;
+}
+td, th {
+  text-align : center;
+  vertical-align : middle;
+}
 </style>
+<%@include file="header.jsp"%>
 <section class="breadcrumb_part">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
 					<a class="nav-link" href="${root}/board/list"><h2>공지사항</h2></a>
-
 				</div>
 			</div>
 		</div>
@@ -25,19 +36,19 @@
 	<div class="container">
 		<form id="frm">
 			<input type="hidden" id="no" name="no" />
-			<table class='table table-hover'>
+			<table class='table table-hover mb-5'>
 				<tr align="center">
-					<div class="table">
-						<select style="font-size:14px; width:100px; height:33.5px;" name="key" id="key">
+					<div class="table mb-5">
+						<select class="ip" style="font-size:15px; width:100px; height:39px;" name="key" id="key">
 							<option value="all">구분</option>
 							<option value="no">번호</option>
 							<option value="title">제목</option>
 							<option value="contents">내용</option>
-						</select> <input type="text" style="height:34px" id="word" name="word" /> <input type="hidden"
+						</select> <input type="text" style="height:39px" id="word" name="word" /> <input type="hidden"
 							id="pageNo" name="pageNo" value='1' /> <input
-							class='btn  btn-secondary btn-sm' type="button" value="검색" id="search">
+							class='btn  btn-outline-info' type="button" value="검색" id="search">
 						<c:if test="${memberInfo.id == 'admin'}">
-							<a class='btn btn-info float-right' href="writeBoard">글쓰기</a>
+							<a class='btn btn-info float-right mr-3' href="writeBoard">글쓰기</a>
 						</c:if>
 					</div>
 				</tr>

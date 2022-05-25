@@ -34,53 +34,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_tittle text-center">
-                        <h2>인기매물</h2>
+                        <h2>실시간 뉴스</h2>
                     </div>
                 </div>
             </div>
+            <div class="row" id="div-news">
+                
+            </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <div class="single_product_item_thumb">
-                            <img src="img/apt/무악동현대.jpg" alt="#" class="img-fluid" width=400px>
-                        </div>
-                        <h3> <a href="single-product.html">무악동현대</a> </h3>
-                        <p>84,960</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/apt/경희궁의아침.jpg" alt="#" class="img-fluid" width=400px>
-                        <h3> <a href="single-product.html">경희궁의아침</a> </h3>
-                        <p>160,000</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/apt/광화문풍림스페이스본.jpg"  alt="#" class="img-fluid" width=400px>
-                        <h3> <a href="single-product.html">광화문풍림스페이스본</a> </h3>
-                        <p>125,000</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/apt/교북동경희궁자이(4단지).jpg" alt="#" class="img-fluid" width=400px>
-                        <h3> <a href="single-product.html">교북동경희궁자이(4단지)</a> </h3>
-                        <p>98,000</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/apt/동성아파트.jpg" alt="#" class="img-fluid" width=400px>
-                        <h3> <a href="single-product.html">동성아파트</a> </h3>
-                        <p>25,000</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/apt/무악동인왕산아이파크.jpg" alt="#" class="img-fluid" width=400px>
-                        <h3> <a href="single-product.html">무악동인왕산아이파크</a> </h3>
-                        <p>130,000</p>
+                <div class="col-lg-12">
+                    <div class="section_tittle text-right">
+                        <h2 style="color:red"><a href="${root}/newsView">더 많은 뉴스 보러가기!</h2>
                     </div>
                 </div>
             </div>
@@ -88,4 +52,29 @@
     </section>
     <!-- trending item end-->
     
-    	<%@include file="footer.jsp" %>
+    <script>
+	    $(document).ready(function(){
+			$.get("${root}/articles",
+				{pageNo: 1},
+				function(data, status){
+					var div_news = $("#div-news")[0];
+					$.each(data, function(index, vo) {
+						if(index<6){
+							div_news.innerHTML += 
+								"<div class='col-lg-4 col-sm-6'>"+
+			                    "<div class='single_product_item'>"+
+		                        "<img src='"+vo.imgURL+"'  alt='#' class='img-fluid' width=400px>"+
+		                        "<h3> <a href='"+vo.titleLink+"'>"+vo.title+"</a> </h3>"+
+		                        "<p> <a href='"+vo.bodyLink+"'>"+vo.body+"</p>"+
+			                    "</div>"+
+			                 	"</div>";
+						}
+					});
+				}
+				, "json"
+			);
+		});
+    </script>
+    
+     
+   	<%@include file="footer.jsp" %>

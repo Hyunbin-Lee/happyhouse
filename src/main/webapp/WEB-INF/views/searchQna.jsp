@@ -31,9 +31,9 @@
 		<div class="">
 			<table class='table table-hover'>
 				<tr align="center mb-5">
-					<div class="table">
+					<div class="table mb-5">
 						<c:if test="${qna.answer != null}">
-							<a href="" class="btn btn-outline-info float-right mb-2">답변완료</a>
+							<a class="btn btn-outline-info float-right mb-5">답변완료</a>
 						</c:if>
 						<c:if test="${memberInfo.id == 'admin'}">
 							<c:if test="${qna.answer == null}">

@@ -34,7 +34,7 @@
 
 					</h3>
 				</div>
-				<form id="writeAsForm" class="row contact_form" action=""
+				<form id="writeAsForm" class="row contact_form mt-5" action=""
 					method="post">
 					<div class="col-md-12 form-group p_star">
 						<label>답변 내용</label>
