@@ -68,6 +68,8 @@
 									href="${root}/contact">관심지역</a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="${root}/qna/list">QnA</a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="${root}/newsView">NEWS</a></li>
 
 								<c:choose>
 									<c:when test="${!empty memberInfo}">
@@ -92,8 +94,6 @@
 											href="${root}/user/login">로그인</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="${root}/user/join">회원가입</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="${root}/newsView">NEWS</a></li>
 									</c:otherwise>
 
 
