@@ -55,13 +55,13 @@
 								type="text" class="form-control" id="phone" name="phone"
 								value="${member.phone}" readonly>
 						</div>
-						<div class="mb-3 mt-3">
+						<div class="mb-5 mt-5">
 							<button type="button" id="changeInfoBtn"
-								class="btn btn-outline-warning">회원정보수정</button>
+								class="btn btn-outline-info">정보 수정</button>
 							<button type="button" style="display: none" id="changeInfoBtn2"
-								class="btn btn-success">수정완료하기</button>
+								class="btn btn-info">수정 완료</button>
 							<button type="button" id="deleteBtn"
-								class="btn btn-outline-danger radius" style="float: right">회원탈퇴</button>
+								class="btn btn-outline-danger radius" style="float: right">회원 탈퇴</button>
 						</div>
 						<div class="mb-3 mt-3"></div>
 

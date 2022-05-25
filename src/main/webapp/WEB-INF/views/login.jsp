@@ -7,7 +7,7 @@
 </c:if>
 <style>
 .mg {
-	margin-top: -20px;
+	margin-top: -50px;
 }
 </style>
 <%@include file="header.jsp"%>
@@ -65,11 +65,14 @@
 									찾기 </a> <a class="lost_pass_left_align" href="${root}/user/join">회원가입</a>
 							</div>
 						</form>
-						<div class="text-center mt-4">
-							<a class="pr-3" id="btn-kakao-login" href="/main/kakao_login.ajax"> <img
-								src="/img/kakaoBtn.png" width="60" alt="카카오 로그인 버튼" />
-							</a> <a class="pl-3" id="btn-kakao-login" href="kakao/login"> <img
-								src="/img/naverBtn.png" width="60" alt="카카오 로그인 버튼" />
+						<div class="text-center mt-5">
+							<hr>
+							<div class="mt-5">
+							<a class="float-center mt-5" style="color:gray">카카오아이디로 편리하게 로그인하세요.</a></br>
+							</div>
+							 <a class="" id="btn-kakao-login"
+								href="/main/kakao_login.ajax"> <img src="/img/kakao_login_large_wide.png"
+								height="50" alt="카카오 로그인 버튼"/>
 							</a>
 						</div>
 						<form id="form-kakao-login" method="post" action="kakao-login">
@@ -108,8 +111,6 @@
 			location.href = "${root}/user/join";
 		});
 	});
-	
-	
 </script>
 
 

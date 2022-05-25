@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ssafy.happyhouse.model.dto.Member;
+import com.ssafy.happyhouse.service.KakaoService;
 import com.ssafy.happyhouse.service.MemberService;
 
 @Controller
@@ -27,6 +29,8 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Autowired
 	MemberService service;
+	@Autowired
+	KakaoService kakaoService;
 
 	// 로그인 페이지 이동
 	@GetMapping("/login")
@@ -95,6 +99,9 @@ public class MemberController {
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
+		if(session.getAttribute("kakaoToken") != null){
+			kakaoService.getLogout((String)session.getAttribute("kakaoToken"));
+        }
 		session.invalidate();
 		return "redirect:/";
 	}
@@ -124,11 +131,11 @@ public class MemberController {
 	}
 
 	// 회원 탈퇴
-	@GetMapping("/delete")
+	@PostMapping("/delete")
 	public String delete(HttpSession session) throws SQLException {
-		String id = (String) session.getAttribute("id");
-		logger.info("회원정보삭제  ---------------------  : {}", id);
-		service.delete(id);
+		Member member = (Member) session.getAttribute("memberInfo");
+		logger.info("회원정보삭제  ---------------------  : {}", member.getId());
+		service.delete(member.getId());
 		session.invalidate();
 		return "redirect:/";
 	}

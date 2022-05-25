@@ -67,7 +67,7 @@
 								<li class="nav-item"><a class="nav-link"
 									href="${root}/contact">관심지역</a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="${root}/qna/list">Q&A</a></li>
+									href="${root}/qna/list">QnA</a></li>
 
 								<c:choose>
 									<c:when test="${!empty memberInfo}">
