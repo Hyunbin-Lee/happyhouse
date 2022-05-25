@@ -19,22 +19,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.News;
+import com.ssafy.happyhouse.model.dto.NewsObj;
 
 @RestController
 @RequestMapping("/articles")
 @CrossOrigin("*")
 public class NewsController {
 	private static final Logger logger = LoggerFactory.getLogger(NewsController.class);
-	private static final String URL = 
-			"https://search.naver.com/search.naver?where=news&sm=tab_pge&query=아파트"+
-			"&sort=0&photo=0&field=0&pd=0&ds=&de=&cluster_rank=72&mynews=0&office_type=0"+
-			"&office_section_code=0&news_office_checked=&nso=so:r,p:all,a:all&start=";
+	private static final String URL_HEAD = "https://search.naver.com/search.naver?where=news&sm=tab_pge&query=";
+	private static final String URL_BODY = "&sort=0&photo=0&field=0&pd=0&ds=&de=&cluster_rank=72&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:r,p:all,a:all&start=";
 	@GetMapping
-	public ResponseEntity<List<News>> getNewsList(@RequestParam("pageNo") int pageNo){
+	public ResponseEntity<NewsObj> getNewsList(@RequestParam("pageNo") int pageNo,
+												  @RequestParam("searchKey") String searchKey){
+		NewsObj newsObj = new NewsObj();
 		List<News> newsList = new ArrayList<>();
+		List<String> relatedList = new ArrayList<>();
+		
 		try {
 			News news;
-			Document doc = Jsoup.connect(URL+pageNo).get();
+			Document doc = Jsoup.connect(URL_HEAD+searchKey+URL_BODY+pageNo).get();
 			Elements elementsByClass = doc.getElementsByClass("list_news").get(0).children();
 			for(Element box : elementsByClass) {
 				news = new News();
@@ -65,12 +68,22 @@ public class NewsController {
 				
 				newsList.add(news);
 			}
-			
-			
+			if(!doc.getElementsByClass("lst_related_srch").isEmpty()) {
+				Elements relatedElements = doc.getElementsByClass("lst_related_srch").get(0).children();
+				for(Element related : relatedElements) {
+					//title
+					Elements titleElements = related.getElementsByClass("tit");
+					for(Element title : titleElements) {
+						relatedList.add(title.text());
+					}
+				}
+			}
+			newsObj.setNews(newsList);
+			newsObj.setRelated(relatedList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return new ResponseEntity<List<News>>(newsList, HttpStatus.OK);
+		return new ResponseEntity<NewsObj>(newsObj, HttpStatus.OK);
 	}
 }

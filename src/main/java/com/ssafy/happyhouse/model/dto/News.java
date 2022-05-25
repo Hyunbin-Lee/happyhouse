@@ -8,6 +8,7 @@ public class News {
 	String imgURL;
 	String body;
 	String bodyLink;
+	String relatedKey;
 	public News() {}
 	
 	public News(String title, String titleLink, String date, String imgURL, String body, String bodyLink) {
@@ -18,6 +19,15 @@ public class News {
 		this.body = body;
 		this.bodyLink = bodyLink;
 	}
+	
+	public String getRelatedKey() {
+		return relatedKey;
+	}
+
+	public void setRelatedKey(String relatedKey) {
+		this.relatedKey = relatedKey;
+	}
+
 	public String getTitleLink() {
 		return titleLink;
 	}
