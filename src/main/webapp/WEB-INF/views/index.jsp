@@ -15,7 +15,6 @@
                         <div class="banner_text_iner">
                             <h3>HappyHouse에 오신것을 환영합니다 </h3>
                             <p>실거래가 조회와 관심지역 정보를 한눈에 파악하세요</p>
-                          	 <p>실거래가 조회와 관심지역 정보를 한눈에 파악하세요</p>
   
                             <a href="${root}/about" class="btn_1">자세히 보기</a>
                         </div>
@@ -28,7 +27,7 @@
     <!-- banner part start-->
 
 
-    <!-- trending item start-->
+       <!-- trending item start-->
     <section class="trending_items">
         <div class="container">
             <div class="row">
@@ -39,7 +38,6 @@
                 </div>
             </div>
             <div class="row" id="div-news">
-                
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -54,16 +52,17 @@
     
     <script>
 	    $(document).ready(function(){
-			$.get("${root}/articles",
-				{pageNo: 1},
+	    	$.get("${root}/articles",
+				{pageNo: 1, searchKey: "아파트"},
 				function(data, status){
+					
 					var div_news = $("#div-news")[0];
-					$.each(data, function(index, vo) {
+					$.each(data.news, function(index, vo) {
 						if(index<6){
 							div_news.innerHTML += 
 								"<div class='col-lg-4 col-sm-6'>"+
 			                    "<div class='single_product_item'>"+
-		                        "<img src='"+vo.imgURL+"'  alt='#' class='img-fluid' width=400px>"+
+		                        "<img src='"+vo.imgURL+"'  alt='#' class='img-fluid img-thumbnail' width=400px>"+
 		                        "<h3> <a href='"+vo.titleLink+"'>"+vo.title+"</a> </h3>"+
 		                        "<p> <a href='"+vo.bodyLink+"'>"+vo.body+"</p>"+
 			                    "</div>"+
@@ -75,5 +74,4 @@
 			);
 		});
     </script>
-  
    	<%@include file="footer.jsp" %>

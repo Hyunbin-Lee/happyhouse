@@ -78,9 +78,9 @@
     					$.each(data.news, function(index, vo) {
     						if(index<6){
     							div_news.innerHTML += 
-    								"<div class='col-lg-4 col-sm-6'>"+
-    			                    "<div class='single_product_item'>"+
-    		                        "<img src='"+vo.imgURL+"'  alt='#' class='img-fluid' width=400px>"+
+    								"<div class='card m-2 border-info'>"+
+    			                    "<div class='card-body single_product_item' style='margin-bottom: 10px;'>"+
+    		                        "<img src='"+vo.imgURL+"'  alt='#' class='img-fluid img-thumbnail' width=400px>"+
     		                        "<h3> <a href='"+vo.titleLink+"'>"+vo.title+"</a> </h3>"+
     		                        "<p> <a href='"+vo.bodyLink+"'>"+vo.body+"</p>"+
     			                    "</div>"+

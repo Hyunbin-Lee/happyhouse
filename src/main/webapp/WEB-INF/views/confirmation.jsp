@@ -47,11 +47,11 @@
 			<!-- YSNO 시도구군동 선택 영역 추가 끝 -->
 
 			<div class="col-md-12">
-				<div class="product_sidebar">
-					<div class="single_sedebar">
+				<div class="product_sidebar" >
+					<div class="single_sedebar" >
 						<form action="#">
 							<input id="AptSearch" type="text" name="#" placeholder="아파트이름 검색"
-								onkeyup='SearchApt()'> <i class="ti-search"></i>
+								onkeyup='SearchApt()' style="background-color:lightblue"> <i class="ti-search"></i>
 						</form>
 					</div>
 				</div>
@@ -68,8 +68,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="order_details_iner" 
-						style="width: 100%; height: 500px; overflow: auto; background-color:#ffffff;">
+					<div 
+						style="width: 100%; height: 500px; overflow: auto; background-color:#ffffff;margin-top: 50px;">
 						<h3>거래 정보</h3>
 						<div class="form-check">
 						  <input type="radio" class="form-check-input" id="radio1" name="optradio" value="price" onchange="sortAptResult(this)">거래액 ▼
@@ -129,7 +129,7 @@
  			-->
 
 	<div class="modal" id="aptDetailModal">
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	
 	      <!-- Modal Header -->
@@ -191,6 +191,7 @@
 		}else{
 			// 관심지역 버튼을 클릭했다면
 			var value = event.target.value;
+			
 			if(value === 'empty'){
 				// empty ==> full
 				event.target.value = 'full';
@@ -202,6 +203,7 @@
 				event.target.src = "${root}/img/icon/empty_heart.png"
 				updateIsfavState(recentPrice,aptName,buildYear,false);
 			}
+			
 		}
 		
 	});
@@ -380,17 +382,18 @@
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.aptName+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.buildYear+"</td>"+
 							"<td class='row-data' data-toggle='modal' data-target='#aptDetailModal'>"+vo.sidoName+vo.gugunName+vo.dongName+vo.jibun+"</td>";
-							if(vo.isfav){
-								str += ("<td>"+
-								"<img src='${root}/img/icon/full_heart.png' id = 'like-btn' value = 'full'/>"
-								+"</td>"+
-								"</tr>");
-							}else{
-								str+=("<td>"+
-								"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
-								+"</td>"+
-								"</tr>");
-							}
+								if(vo.isfav){
+									str += ("<td>"+
+									"<img src='${root}/img/icon/full_heart.png' id = 'like-btn' value = 'full'/>"
+									+"</td>"+
+									"</tr>");
+								}else{
+									str+=("<td>"+
+									"<img src='${root}/img/icon/empty_heart.png' id = 'like-btn' value = 'empty'/>"
+									+"</td>"+
+									"</tr>");
+								}
+							
 						/*
 						let str = `
 							<tr class="${colorArr[index%3]}">
