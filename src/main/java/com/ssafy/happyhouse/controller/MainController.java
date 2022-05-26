@@ -21,10 +21,6 @@ public class MainController {
 	public String contact() {
 		return "/contact";
 	}
-	@GetMapping("/sitemap")
-	public String sitemap() {
-		return "/sitemap";
-	}
 	@GetMapping("/vueqna")
 	public void vueqna() {
 		

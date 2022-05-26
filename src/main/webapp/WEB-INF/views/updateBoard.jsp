@@ -5,7 +5,11 @@
 	<c:set var="saveid" value="${cookie.ssafy_id.value}" />
 	<c:set var="idck" value=" checked=\"checked\"" />
 </c:if>
-
+<style>
+label{
+	font-size: 18px;
+}
+</style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start-->
 <section class="breadcrumb_part">
@@ -35,21 +39,21 @@
 				<div class="text-center"></div>
 				<form id="updateForm" class="row contact_form" action=""
 					method="post">
-					<div class="col-md-12 form-group p_star">
-						<label>작성자</label> <input type="text" class="form-control"
+					<div class="col-md-12 form-group p_star mt-5">
+						<label>작성자</label> <input type="text" class="form-control" style="font-size:18px;"
 							id="author" name="author" value="${board.author}" readonly />
 					</div>
 
-					<div class="col-md-12 form-group p_star">
-						<label>제목</label> <input type="text" class="form-control"
+					<div class="col-md-12 form-group p_star mt-3">
+						<label>제목</label> <input type="text" class="form-control" style="font-size:18px;"
 							id="title" name="title" value="${board.title}" required />
 					</div>
-					<div class="col-md-12 form-group p_star">
+					<div class="col-md-12 form-group p_star mt-3">
 						<label>내용</label>
-						<textarea class="form-control" id="contents" name="contents">${board.contents}</textarea>
+						<textarea class="form-control" style="font-size:18px;" id="contents" name="contents">${board.contents}</textarea>
 					</div>
-					<div class="col-md-12 form-group">
-						<button type="button" class="btn_3" id="updateBoardBtn">
+					<div class="col-md-12 form-group mt-5">
+						<button type="button" class="btn_3" id="updateBoardBtn" style="font-size:18px;">
 							수정완료</button>
 					</div>
 				</form>

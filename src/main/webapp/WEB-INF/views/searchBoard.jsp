@@ -9,6 +9,34 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
 	background-color: white;
 }
+label{
+	font-size: 20px;
+}
+th, td {
+	font-size: 18px;
+	vertical-align: middle;
+	height: 65px;
+}
+.box {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.box2 {
+    width: 60px;
+    height: 60px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.top{
+	margin-top: -300px;
+}
 </style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start-->
@@ -48,13 +76,13 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea class="form-control float-center" id="contents"
-							name="contents" style="width: 850px; height: 300px" readonly>${board.contents}</textarea></td>
+					<td><textarea class="form-control float-center mt-5" id="contents"
+							name="contents" style="width: 850px; height: 300px; font-size: 18px;" readonly>${board.contents}</textarea></td>
 				</tr>
 			</table>
 			<table class="table">
 				<tr align="center">
-					<div class="table text-center">
+					<div class="table text-center mt-4">
 						<a href="${root}/board/list" class='btn btn-secondary'>목록</a>
 						<c:if test="${memberInfo.id == board.author}">
 							<a href="${root}/board/remove?no=${board.no}"
@@ -66,23 +94,31 @@
 				</tr>
 			</table>
 		</div>
-		<hr>
-
-		<!--  댓글  -->
+		<c:if test="${memberInfo != null}">
+			<hr>
+		</c:if>
 		<div class="container">
-			        <label class="mt-5" for="content">comment</label>        
-			<form name="commentInsertForm">
-				<div class="input-group">
-					<input type="hidden" name="bno" value="${board.no}" />
-					<input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
-						<button class="btn btn-secondary" type="button" name="commentInsertBtn">등록</button>               
-				</div>
-			</form>
+				<label class="mt-3" for="content">댓글</label>
+				<c:if test="${memberInfo == null}">
+				<hr>
+				</c:if>
+			<c:if test="${memberInfo != null}">
+				<form name="commentInsertForm">
+					<div class="input-group">
+						<input type="hidden" name="bno" value="${board.no}" /> <input
+							type="text" class="form-control" id="content" name="content"
+							placeholder="내용을 입력하세요." style="height: 50px; font-size: 18px" />
+						<button type="button" class="btn btn-info" name="commentInsertBtn"
+							style="border-width: 0; border-radius: 7px; width: 80px; font-size: 18px; border-color: #17a2b8; color: white; background-color: #17a2b8;">등록</button>
+					</div>
+				</form>
+			</c:if>
 		</div>
-		<div class="container">
-			<div class="commentList"></div>
+		<div class="container" style="font-size: 18px;">
+			<div class="commentList mt-5" style="font-size: 18px;">
+				<%@include file="comment.jsp"%>
+			</div>
 		</div>
-		<%@include file="comment.jsp"%>
 	</div>
 </section>
 <!--================login_part end =================-->

@@ -6,10 +6,10 @@ public class Comment {
 	private int cno;
 	private int bno;
 	private String content;
-	private String userid;
-	private Date reg_date;
+	public String userid;
+	private String reg_date;
 	
-	public Comment(int cno, int bno, String content, String userid, Date reg_date) {
+	public Comment(int cno, int bno, String content, String userid, String reg_date) {
 		super();
 		this.cno = cno;
 		this.bno = bno;
@@ -53,11 +53,11 @@ public class Comment {
 		this.userid = userid;
 	}
 
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 

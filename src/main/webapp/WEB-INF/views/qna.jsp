@@ -17,6 +17,7 @@ select{
   vertical-align: middle;
 }
 th, td {
+	font-size: 18px;
 	text-align: center;
 	vertical-align: middle;
 	height: 65px;
@@ -29,7 +30,7 @@ th, td {
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
 					<a class="nav-link" href="${root}/qna/list"><h2>QnA</h2></a>
-					<p>happyhouse는 여러분의 소중한 의견에 항상 귀 기울이고 있습니다.</p>
+					<p style="font-size:20">happyhouse는 여러분의 소중한 의견에 항상 귀 기울이고 있습니다.</p>
 				</div>
 			</div>
 		</div>

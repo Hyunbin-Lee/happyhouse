@@ -18,7 +18,7 @@
 
 <!--================login_part Area =================-->
 <section class="login_part section_padding ">
-	<div class="container">
+	<div class="container" style="font-size:18px;">
 		<div class="row align-items-center">
 			<div
 				class="col-lg-8 col-md-8 col-sm-8 container justify-content-center">

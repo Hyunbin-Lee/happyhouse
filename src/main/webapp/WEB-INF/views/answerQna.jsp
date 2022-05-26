@@ -5,7 +5,11 @@
 	<c:set var="saveid" value="${cookie.ssafy_id.value}" />
 	<c:set var="idck" value=" checked=\"checked\"" />
 </c:if>
-
+<style>
+label{
+	font-size: 18px;
+}
+</style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start--> 
 <section class="breadcrumb_part">
@@ -13,7 +17,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
-					<h2>Q&A</h2>
+					<h2>QnA</h2>
+					<p style="font-size:20">happyhouse는 여러분의 소중한 의견에 항상 귀 기울이고 있습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -36,13 +41,13 @@
 				</div>
 				<form id="writeAsForm" class="row contact_form mt-5" action=""
 					method="post">
-					<div class="col-md-12 form-group p_star">
+					<div class="col-md-12 form-group p_star mt-5">
 						<label>답변 내용</label>
-						<textarea class="form-control" style="height: 200px" id="answer"
+						<textarea class="form-control" style="height: 300px; font-size: 18px;" id="answer"
 							name="answer"></textarea>
 					</div>
-					<div class="col-md-12 form-group">
-						<button type="button" class="btn_3" id="writeAsBtn">작성완료</button>
+					<div class="col-md-12 form-group mt-5">
+						<button type="button" class="btn_3" id="writeAsBtn" style="font-size:18px;">작성완료</button>
 					</div>
 				</form>
 

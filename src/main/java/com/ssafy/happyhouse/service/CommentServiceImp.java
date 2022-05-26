@@ -30,8 +30,13 @@ public class CommentServiceImp implements CommentService {
 	}
 
 	@Override
-	public List<Comment> searchComment() throws Exception {
-		return mapper.commentList();
+	public List<Comment> searchComment(int bno) throws Exception {
+		return mapper.commentList(bno);
+	}
+
+	@Override
+	public List<Comment> inquireComment(int cno) throws Exception {
+		return mapper.commentInquire(cno);
 	}
 
 }

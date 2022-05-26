@@ -5,7 +5,11 @@
 	<c:set var="saveid" value="${cookie.ssafy_id.value}"/>
 	<c:set var="idck" value=" checked=\"checked\""/>
 </c:if>
-	
+<style>
+label{
+	font-size: 18px;
+}
+</style>	
 <%@include file="header.jsp" %>
     <!-- breadcrumb part start-->
     <section class="breadcrumb_part">
@@ -34,21 +38,21 @@
                   </h3>
                 </div>
                   <form id="writeForm" class="row contact_form" action="" method="post">
-                  <div class="col-md-12 form-group p_star">
+                  <div class="col-md-12 form-group p_star mt-5">
                     <label>작성자 이름</label>
-                    <input type="text" class="form-control" id="author" name="author" value="<c:out value='${memberInfo.id}'/>" readonly="readonly"/>
+                    <input type="text" class="form-control" style="font-size:18px;" id="author" name="author" value="<c:out value='${memberInfo.id}'/>" readonly="readonly"/>
                   </div>
                   
-                  <div class="col-md-12 form-group p_star">
+                  <div class="col-md-12 form-group p_star mt-3">
                     <label>제목</label>
-                      <input type="text" class="form-control" id="title" name="title" required/>
+                      <input type="text" class="form-control" style="font-size:18px;" id="title" name="title" required/>
                   </div>
-                  <div class="col-md-12 form-group p_star">
+                  <div class="col-md-12 form-group p_star mt-3">
                     <label>내용</label>
-                      <textarea class="form-control" id="contents" name="contents"></textarea>
+                      <textarea class="form-control" style="height: 300px; font-size:18px;" id="contents" name="contents"></textarea>
                   </div>
-                  <div class="col-md-12 form-group">
-                  <button type="button" class="btn_3" id="writeBtn">
+                  <div class="col-md-12 form-group mt-5">
+                  <button type="button" class="btn_3" id="writeBtn" style="font-size:18px;">
                      작성완료 
                     </button>
                   </div>

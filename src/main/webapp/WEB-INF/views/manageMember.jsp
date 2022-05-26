@@ -14,6 +14,7 @@ select{
   vertical-align: middle;
 }
 td, th {
+  font-size: 18px;
   text-align : center;
   vertical-align : middle;
 }

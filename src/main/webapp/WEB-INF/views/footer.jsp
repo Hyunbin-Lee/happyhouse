@@ -20,7 +20,7 @@
 						<div class="separator-2">
 							<hr />
 						</div>
-						<ul class="list-icons">
+						<ul class="list-icons" style="font-size: 16px;">
 							<li><img class="mb-2" alt="핀" src="/img/icon-pin.png" height="22">&nbsp;&nbsp;(SSAFY) 서울시 강남구 테헤란로 멀티스퀘어</li>
 							<li><img class="mb-2" alt="콜" src="/img/icon-call.png" height="22">&nbsp;&nbsp;1544-9001</li>
 							<li><img class="mb-2" alt="멜" src="/img/icon-mail.png" height="22">&nbsp;&nbsp;admin@ssafy.com</li>

@@ -4548,7 +4548,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	word-wrap: break-word;
 	background-color: #fff;
 	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, .125);
+	border: 1px solid #17a2b8;
 	border-radius: .25rem
 }
 
@@ -4570,7 +4570,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	padding: 1.25rem
+	padding: 4rem
 }
 
 .card-title {
@@ -4595,10 +4595,12 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .card-header {
-	padding: .75rem 1.25rem;
+	color: white;
+	padding: 1rem 1.25rem;
 	margin-bottom: 0;
-	background-color: rgba(0, 0, 0, .03);
-	border-bottom: 1px solid rgba(0, 0, 0, .125)
+	background-color: #17a2b8;
+	border-bottom: 1px solid #17a2b8;
+	text-align:center;
 }
 
 .card-header:first-child {

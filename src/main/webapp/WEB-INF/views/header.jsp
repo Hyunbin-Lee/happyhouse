@@ -11,8 +11,8 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>6조 해피하우스</title>
-<link rel="icon" href="/img/favicon.png" />
+<title>Happy House</title>
+<link rel="icon" href="/img/home.png" />
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
 <!-- animate CSS -->
@@ -78,13 +78,13 @@
 											id="navbarDropdown_3" role="button" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false">
 												${memberInfo.name} </a>
-											<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-												<a class="dropdown-item" href="${root}/user/logout">
+											<div class="dropdown-menu" aria-labelledby="navbarDropdown_2" >
+												<a class="dropdown-item" href="${root}/user/logout" style="font-size: 18px;">
 													로그아웃 </a> <a class="dropdown-item"
-													href="${root}/user/memberInfo">마이페이지</a>
+													href="${root}/user/memberInfo" style="font-size: 18px;">마이페이지</a>
 													<c:if test="${memberInfo.id == 'admin'}">
 													<a class="dropdown-item"
-													href="${root}/admin/list">회원관리</a>
+													href="${root}/admin/list" style="font-size: 18px;">회원관리</a>
 													</c:if>
 											</div></li>
 										<li class="nav-item"><a class="nav-link" href=""></a></li>

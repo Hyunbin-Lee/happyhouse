@@ -7,10 +7,15 @@
 </c:if>
 <style>
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: #D1D1D1;
+  background-color: white;
 }
 .btn-hover{
 	pointer-events: none;
+}
+th, td {
+	font-size: 18px;
+	vertical-align: middle;
+	height: 65px;
 }
 </style>
 <%@include file="header.jsp"%>
@@ -20,7 +25,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
-					<h2>Q&A</h2>
+					<h2>QnA</h2>
+					<p style="font-size:20">happyhouse는 여러분의 소중한 의견에 항상 귀 기울이고 있습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -35,8 +41,13 @@
 			<table class='table table-hover'>
 				<tr align="center mb-5">
 					<div class="table mb-5">
-						<c:if test="${qna.answer != null}">
+					<c:if test="${memberInfo.id != 'admin'}">
+							<c:if test="${qna.answer == null}">
+								<a class="btn btn-outline-info btn-hover float-right mb-5">답변대기</a>
+							</c:if>
+							<c:if test="${qna.answer != null}">
 							<a class="btn btn-outline-info btn-hover float-right mb-5">답변완료</a>
+						</c:if>
 						</c:if>
 						<c:if test="${memberInfo.id == 'admin'}">
 							<c:if test="${qna.answer == null}">
@@ -46,6 +57,9 @@
 							<c:if test="${qna.answer != null}">
 								<a href="${root}/qna/updateAsForm?articleno=${qna.articleno}" class="btn btn-info">답변수정</a>
 							</c:if>
+							<c:if test="${qna.answer != null}">
+							<a class="btn btn-outline-info btn-hover float-right mb-5">답변완료</a>
+						</c:if>
 						</c:if>
 					</div>
 				</tr>
@@ -67,14 +81,16 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td>${qna.content}</td>
+					<td><textarea class="form-control float-center mt-5 mb-5" id="content"
+							name="content" style="width: 850px; height: 300px; font-size: 18px;" readonly>${qna.content}</textarea></td>
 				</tr>
 			</table>
 			<table class='table'>
 				<c:if test="${qna.answer != null}">
+				<hr>
 					<tr>
-						<div class="card mx-2 mb-5" width="300">
-							<div class="card-header">답변</div>
+						<div class="card mt-5 mx-2 mb-5" width="300" style="font-size:18px;">
+							<div class="card-header">답변 내용</div>
 							<div class="card-body">${qna.answer}</div>
 						</div>
 					</tr>

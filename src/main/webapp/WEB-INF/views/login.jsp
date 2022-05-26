@@ -9,6 +9,9 @@
 .mg {
 	margin-top: -50px;
 }
+label{
+	font-size: 18px;
+}
 </style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start-->
@@ -39,28 +42,28 @@
 							</h3>
 						</div>
 
-						<form class="row contact_form" method="post" id="loginform"
+						<form class="row contact_form" method="post" id="loginform" style="font-size: 18px;"
 							action="">
 							<input type="hidden" name="act" value="login" />
 							<div class="col-md-12 form-group p_star">
 								<input type="text" class="form-control" id="user_id" name="id"
-									placeholder="아이디 입력" value="${saveid}" required />
+									placeholder="아이디 입력" value="${saveid}" style="font-size: 18px;" required />
 							</div>
 
 							<div class="col-md-12 form-group p_star">
 
 								<input type="password" class="form-control" id="password"
-									name="password" placeholder="비밀번호 입력" required />
+									name="password" placeholder="비밀번호 입력" style="font-size: 18px;" required />
 
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account d-flex align-items-center mb-5">
 									<label class="form-check-label"> <input
-										class="form-check-input " type="checkbox" id="idsave"
-										name="idsave" value="saveok" ${idck}> 아이디저장
+										class="form-check-input" style="zoom: 1.4;" type="checkbox" id="idsave"
+										name="idsave" value="saveok" ${idck}> <div style="font-size: 18px;">아이디저장</div>
 									</label>
 								</div>
-								<button type="button" class="btn_3" id="loginBtn">로그인</button>
+								<button type="button" class="btn_3" id="loginBtn" style="font-size: 18px;">로그인</button>
 								<a class="lost_pass " href="${root}/user/findPassword">비밀번호
 									찾기 </a> <a class="lost_pass_left_align" href="${root}/user/join">회원가입</a>
 							</div>
@@ -68,11 +71,11 @@
 						<div class="text-center mt-5">
 							<hr>
 							<div class="mt-5">
-							<a class="float-center mt-5" style="color:gray">카카오아이디로 편리하게 로그인하세요.</a></br>
+							<a class="float-center mt-5" style="color:gray; font-size:18px;">카카오아이디로 편리하게 로그인하세요.</a></br>
 							</div>
 							 <a class="" id="btn-kakao-login"
 								href="/main/kakao_login.ajax"> <img src="/img/kakao_login_large_wide.png"
-								height="50" alt="카카오 로그인 버튼"/>
+								height="60" alt="카카오 로그인 버튼"/>
 							</a>
 						</div>
 						<form id="form-kakao-login" method="post" action="kakao-login">

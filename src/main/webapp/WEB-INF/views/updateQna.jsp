@@ -5,7 +5,11 @@
 	<c:set var="saveid" value="${cookie.ssafy_id.value}" />
 	<c:set var="idck" value=" checked=\"checked\"" />
 </c:if>
-
+<style>
+label{
+	font-size: 18px;
+}
+</style>
 <%@include file="header.jsp"%>
 <!-- breadcrumb part start-->
 <section class="breadcrumb_part">
@@ -13,7 +17,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
-					<h2>Q&A</h2>
+					<h2>QnA</h2>
+					<p style="font-size:20">happyhouse는 여러분의 소중한 의견에 항상 귀 기울이고 있습니다.</p>
 				</div>
 			</div>
 		</div>
@@ -35,21 +40,21 @@
 				<div class="text-center"></div>
 				<form id="updateForm" class="row contact_form" action=""
 					method="post">
-					<div class="col-md-12 form-group p_star">
-						<label>작성자</label> <input type="text" class="form-control"
+					<div class="col-md-12 form-group p_star mt-5">
+						<label>작성자</label> <input type="text" class="form-control" style="font-size:18px;"
 							id="userid" name="userid" value="${qna.userid}" readonly />
 					</div>
 
-					<div class="col-md-12 form-group p_star">
-						<label>제목</label> <input type="text" class="form-control"
+					<div class="col-md-12 form-group p_star mt-3">
+						<label>제목</label> <input type="text" class="form-control" style="font-size:18px;"
 							id="subject" name="subject" value="${qna.subject}" required />
 					</div>
-					<div class="col-md-12 form-group p_star">
+					<div class="col-md-12 form-group p_star mt-3">
 						<label>내용</label>
-						<textarea class="form-control" id="content" name="content">${qna.content}</textarea>
+						<textarea class="form-control" style="font-size:18px;" id="content" name="content">${qna.content}</textarea>
 					</div>
-					<div class="col-md-12 form-group">
-						<button type="button" class="btn_3" id="updateQnaBtn">
+					<div class="col-md-12 form-group mt-5">
+						<button type="button" class="btn_3" id="updateQnaBtn" style="font-size:18px;">
 							수정완료</button>
 					</div>
 				</form>

@@ -9,7 +9,11 @@
 	</select>
 	
 	<select id="commentList" resultType="comment">
-		select * from comment
+		select cno, bno, content, userid, reg_date from comment where bno = #{bno}
+	</select>
+	
+	<select id="commentInquire" parameterType="int" resultType="comment">
+		select * from comment where cno = #{cno}
 	</select>
 	
 	<insert id="commentInsert" parameterType="comment">

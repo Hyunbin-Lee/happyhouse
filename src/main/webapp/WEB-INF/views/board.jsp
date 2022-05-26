@@ -17,6 +17,7 @@ select {
 }
 
 th, td {
+	font-size: 18px;
 	text-align: center;
 	vertical-align: middle;
 	height: 65px;

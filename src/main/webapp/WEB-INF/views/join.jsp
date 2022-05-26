@@ -38,6 +38,7 @@
                   action=""
                   method="post"
                   id="joinForm"
+                  style="font-size: 18px;"
                 >
                 <input type="hidden" name="act" value="register" />
                   <div class="col-md-12 form-group p_star">
@@ -125,7 +126,7 @@
                     <div class="check_font" id="phone_check"></div>
                   </div>
                   <div class="col-md-12 form-group">
-                    <button type="button"  class="btn_3"  id="joinBtn">
+                    <button type="button"  class="btn_3"  id="joinBtn" style="font-size: 18px;">
                       회원가입
                     </button>
 
